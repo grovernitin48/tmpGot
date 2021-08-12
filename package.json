@@ -1,0 +1,26 @@
+{
+  "name": "tmpgot",
+  "version": "1.0.0",
+  "description": "Temp Repo for GOT battles",
+  "main": "index.js",
+  "engines": {
+    "node": "8.1.1",
+    "npm": "5.0.3"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grovernitin48/tmpGot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grovernitin48/tmpGot/issues"
+  },
+  "homepage": "https://github.com/grovernitin48/tmpGot#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
