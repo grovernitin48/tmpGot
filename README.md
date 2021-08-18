@@ -2,30 +2,45 @@
 
 | No. | Questions |
 | --- | --------- |
-|   | **Core React** |
-|1  | [What is React?](#what-is-react) |
-|2  | [What are the major features of React?](#what-are-the-major-features-of-react) |
-|3  | [What is JSX?](#what-is-jsx) |
-|4  | [What is the difference between Element and Component?](#what-is-the-difference-between-element-and-component) |
-|5  | [How to create components in React?](#how-to-create-components-in-react) |
-|6  | [When to use a Class Component over a Function Component?](#when-to-use-a-class-component-over-a-function-component) |
-|7  | [What are Pure Components?](#what-are-pure-components) |
-|8  | [What is state in React?](#what-is-state-in-react) |
-|9  | [What are props in React?](#what-are-props-in-react) |
-|10 | [What is the difference between state and props?](#what-is-the-difference-between-state-and-props) |
-|11 | [Why should we not update the state directly?](#why-should-we-not-update-the-state-directly) |
-|12 | [What is the purpose of callback function as an argument of setState()?](#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate)
-|13 | [What is the difference between HTML and React event handling?](#what-is-the-difference-between-html-and-react-event-handling) |
-|14 | [How to bind methods or event handlers in JSX callbacks?](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks) |
-|15 | [How to pass a parameter to an event handler or callback?](#how-to-pass-a-parameter-to-an-event-handler-or-callback) |
-|16 | [What are synthetic events in React?](#what-are-synthetic-events-in-react) |
-|17 | [What are inline conditional expressions?](#what-are-inline-conditional-expressions) |
-|18 | [What is "key" prop and what is the benefit of using it in arrays of elements?](#what-is-key-prop-and-what-is-the-benefit-of-using-it-in-arrays-of-elements) |
-|19 | [What is the use of refs?](#what-is-the-use-of-refs) |
-|20 | [How to create refs?](#how-to-create-refs)
+|   | **JS Coding** |
+|1  | [Array Questions: Unique elements](#what-is-react) |
+|2  | [Array Questions: Nested array to single array](#what-are-the-major-features-of-react) |
+|3  | [Array Questions: Anagrams in a array of strings](#what-is-jsx) |
+|4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
+|5  | [Async await/ Fetch data from API](#how-to-create-components-in-react) |
+|6  | [Async defer](#when-to-use-a-class-component-over-a-function-component) |
+|7  | [Closures](#what-are-pure-components) |
+|8  | [Currying](#what-is-state-in-react) |
+|9  | [Call, apply, bind](#what-are-props-in-react) |
+|10 | [Debouncing](#what-is-the-difference-between-state-and-props) |
+|11 | [Event Bubbling](#why-should-we-not-update-the-state-directly) |
+|12 | [Event Capturing](#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate)
+|13 | [Event Delegation](#what-is-the-difference-between-html-and-react-event-handling) |
+|14 | [Hoisting](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks) |
+|15 | [Object Questions:](#how-to-pass-a-parameter-to-an-event-handler-or-callback) |
+|16 | [Polyfills for bind](#what-are-synthetic-events-in-react) |
+|17 | [Polyfills for find](#what-are-inline-conditional-expressions) |
+|18 | [Polyfills for findAll](#what-is-key-prop-and-what-is-the-benefit-of-using-it-in-arrays-of-elements) |
+|19 | [Polyfills for filter](#what-is-the-use-of-refs) |
+|20 | [Polyfills for forEach](#how-to-create-refs)
+|21 | [Polyfills for map](#what-are-pure-components) |
+|22 | [Polyfills for Object.Assign](#what-is-state-in-react) |
+|23 | [Polyfills for Promise.All](#what-are-props-in-react) |
+|24 | [Polyfills for reduce](#what-is-the-difference-between-state-and-props) |
+|25 | [Promises](#why-should-we-not-update-the-state-directly) |
+|26 | [Prototypical inheritance](#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate)
+|27 | [String Questions: Reverse every word](#what-is-the-difference-between-html-and-react-event-handling) |
+|28 | [Throttling](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks) |
+|29 | [Object Questions:](#how-to-pass-a-parameter-to-an-event-handler-or-callback) |
+|30 | [Output Questions: Const let var](#what-are-synthetic-events-in-react) |
+|31 | [Output Questions: setTimeout](#what-are-inline-conditional-expressions) |
+|32 | [Specific Questions: Minimum number of platforms to take all trains](#what-is-key-prop-and-what-is-the-benefit-of-using-it-in-arrays-of-elements) |
+|33 | [Specific Questions: Minesweeper game](#what-is-the-use-of-refs) |
+|34 | [Polyfills for forEach](#how-to-create-refs)
 
 
-3. ### What is JSX?
+
+34. ### What is JSX?
 
     *JSX* is a XML-like syntax extension to ECMAScript (the acronym stands for *JavaScript XML*). Basically it just provides syntactic sugar for the `React.createElement()` function, giving us expressiveness of JavaScript along with HTML like template syntax.
 
@@ -46,6 +61,7 @@
 
    **[⬆ Back to Top](#table-of-contents)**
 
+```
 //Debouncing & Throttling
 let counter = 0
 const getData = () => {
@@ -82,6 +98,7 @@ const throttle = (fn, limit) => {
   }
 
 const throttleFunction = throttle(getData, 1000);
+```
 
 
 //Currying
@@ -161,7 +178,7 @@ Array.prototype.customForEach = function(callback) {
 values.customForEach((element, index, arr) => {
   console.log(element, index, arr)
 })
-
+**[⬆ Back to Top](#table-of-contents)**
 //Polyfil for filter
 let values = [2,5,5]
 let res = values.filter((element, index, arr) => element > 3)
