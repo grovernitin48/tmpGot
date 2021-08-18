@@ -3,7 +3,7 @@
 | No. | Questions |
 | --- | --------- |
 |   | **JS Coding** |
-|1  | [Array Questions: Unique elements](#what-is-react) |
+|1  | [Array Questions: Unique elements](#unique-elements) |
 |2  | [Array Questions: Nested array to single array](#what-are-the-major-features-of-react) |
 |3  | [Array Questions: Anagrams in a array of strings](#what-is-jsx) |
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
@@ -40,26 +40,34 @@
 
 
 
-34. ### What is JSX?
-
-    *JSX* is a XML-like syntax extension to ECMAScript (the acronym stands for *JavaScript XML*). Basically it just provides syntactic sugar for the `React.createElement()` function, giving us expressiveness of JavaScript along with HTML like template syntax.
-
-    In the example below text inside `<h1>` tag is returned as JavaScript function to the render function.
+1. ### Array Questions: Unique elements
 
     ```jsx harmony
-    class App extends React.Component {
-      render() {
-        return(
-          <div>
-            <h1>{'Welcome to React world!'}</h1>
-          </div>
-        )
-      }
+   const a = [1,1,2,3,3,4,5,6,6]
+   
+   // 1. Basic Way
+   const filterUnique = (a) => {
+   // Creating an object
+   const obj = {};
+   //Iterating through loop and adding keys to the object{object always have unique keys}
+   for(let i=0; i<a.length; i++){
+      obj[a[i]] = i;
+     }
+     //Returning object keys in form of Array
+     return Object.keys(obj).map(val => parseInt(val,10))
     }
+    console.log(filterUnique(a))
+    // 2. Easy Way
+    // iterating array and passing third param of the filter function(array itself),
+    // indexOF will return index of the element(first occurence)
+    // if index of our firt iterator equals index of second iterator(indexOf), then
+    // its a uniques element otherwise its a duplicatte
+    // Filter function returns the array which satisfies the condition mentioned inside
+    console.log(a.filter((el,ind, arr) => arr.indexOf(el) === ind));
     ```
-
-
    **[⬆ Back to Top](#table-of-contents)**
+   
+2. ### Array Questions: Nested array to single array
 
 ```
 //Debouncing & Throttling
