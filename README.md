@@ -3,7 +3,7 @@
 | No. | Questions |
 | --- | --------- |
 |   | **JS Coding** |
-|1  | [Array Questions: Unique elements](#unique-elements) |
+|1  | [Array Questions: Unique elements](#array-questions:-unique-elements) |
 |2  | [Array Questions: Nested array to single array](#what-are-the-major-features-of-react) |
 |3  | [Array Questions: Anagrams in a array of strings](#what-is-jsx) |
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
@@ -18,7 +18,7 @@
 |13 | [Event Delegation](#what-is-the-difference-between-html-and-react-event-handling) |
 |14 | [Hoisting](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks) |
 |15 | [Object Questions:](#how-to-pass-a-parameter-to-an-event-handler-or-callback) |
-|16 | [Polyfills for bind](#what-are-synthetic-events-in-react) |
+|16 | [Polyfills for bind](#polyfills-for-bind) |
 |17 | [Polyfills for find](#what-are-inline-conditional-expressions) |
 |18 | [Polyfills for findAll](#what-is-key-prop-and-what-is-the-benefit-of-using-it-in-arrays-of-elements) |
 |19 | [Polyfills for filter](#what-is-the-use-of-refs) |
@@ -68,6 +68,29 @@
    **[⬆ Back to Top](#table-of-contents)**
    
 2. ### Array Questions: Nested array to single array
+3. ### Polyfills for bind
+```jsx harmony
+    let Person = {
+      name: 'Nitin',
+      lastName: 'Grover'
+    }
+    let printname = function() {
+      console.log(this.name +" , "+ this.lastName)
+    }
+    let printMyName = printname.bind(Person)
+    printMyName();
+
+    Function.prototype.customBind = function(...args){
+       let obj = this
+       let param = args.slice(1)
+       return function(...args2){
+          obj.apply(args[0], [...param, ...args2])
+       }
+    }
+    let printMyName2 = printname.customBind(Person)
+    printMyName2();
+```
+
 
 ```
 //Debouncing & Throttling
