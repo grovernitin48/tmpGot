@@ -3,7 +3,7 @@
 | No. | Questions |
 | --- | --------- |
 |   | **JS Coding** |
-|1  | [Array Questions: Unique elements](#array-questions:-unique-elements) |
+|1  | [Array Questions: Unique elements](#array-questions-unique-elements) |
 |2  | [Array Questions: Nested array to single array](#what-are-the-major-features-of-react) |
 |3  | [Array Questions: Anagrams in a array of strings](#what-is-jsx) |
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
@@ -68,7 +68,10 @@
    **[⬆ Back to Top](#table-of-contents)**
    
 2. ### Array Questions: Nested array to single array
-3. ### Polyfills for bind
+
+**[⬆ Back to Top](#table-of-contents)**
+
+4. ### Polyfills for bind
 ```jsx harmony
     let Person = {
       name: 'Nitin',
@@ -90,8 +93,7 @@
     let printMyName2 = printname.customBind(Person)
     printMyName2();
 ```
-
-
+**[⬆ Back to Top](#table-of-contents)**
 ```
 //Debouncing & Throttling
 let counter = 0
