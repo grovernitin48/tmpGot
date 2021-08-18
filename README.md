@@ -1,3 +1,51 @@
+### Table of Contents
+
+| No. | Questions |
+| --- | --------- |
+|   | **Core React** |
+|1  | [What is React?](#what-is-react) |
+|2  | [What are the major features of React?](#what-are-the-major-features-of-react) |
+|3  | [What is JSX?](#what-is-jsx) |
+|4  | [What is the difference between Element and Component?](#what-is-the-difference-between-element-and-component) |
+|5  | [How to create components in React?](#how-to-create-components-in-react) |
+|6  | [When to use a Class Component over a Function Component?](#when-to-use-a-class-component-over-a-function-component) |
+|7  | [What are Pure Components?](#what-are-pure-components) |
+|8  | [What is state in React?](#what-is-state-in-react) |
+|9  | [What are props in React?](#what-are-props-in-react) |
+|10 | [What is the difference between state and props?](#what-is-the-difference-between-state-and-props) |
+|11 | [Why should we not update the state directly?](#why-should-we-not-update-the-state-directly) |
+|12 | [What is the purpose of callback function as an argument of setState()?](#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate)
+|13 | [What is the difference between HTML and React event handling?](#what-is-the-difference-between-html-and-react-event-handling) |
+|14 | [How to bind methods or event handlers in JSX callbacks?](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks) |
+|15 | [How to pass a parameter to an event handler or callback?](#how-to-pass-a-parameter-to-an-event-handler-or-callback) |
+|16 | [What are synthetic events in React?](#what-are-synthetic-events-in-react) |
+|17 | [What are inline conditional expressions?](#what-are-inline-conditional-expressions) |
+|18 | [What is "key" prop and what is the benefit of using it in arrays of elements?](#what-is-key-prop-and-what-is-the-benefit-of-using-it-in-arrays-of-elements) |
+|19 | [What is the use of refs?](#what-is-the-use-of-refs) |
+|20 | [How to create refs?](#how-to-create-refs)
+
+
+3. ### What is JSX?
+
+    *JSX* is a XML-like syntax extension to ECMAScript (the acronym stands for *JavaScript XML*). Basically it just provides syntactic sugar for the `React.createElement()` function, giving us expressiveness of JavaScript along with HTML like template syntax.
+
+    In the example below text inside `<h1>` tag is returned as JavaScript function to the render function.
+
+    ```jsx harmony
+    class App extends React.Component {
+      render() {
+        return(
+          <div>
+            <h1>{'Welcome to React world!'}</h1>
+          </div>
+        )
+      }
+    }
+    ```
+
+
+   **[⬆ Back to Top](#table-of-contents)**
+
 //Debouncing & Throttling
 let counter = 0
 const getData = () => {
