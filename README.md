@@ -88,7 +88,26 @@
 **[⬆ Back to Top](#table-of-contents)**
 
 3. ### Array Questions: Anagrams in a array of strings
-
+4. ### Array Questions: Return 2 indices from an array, sum of their elements is= to given number?
+ ```jsx harmony
+     let A = [ 1, 4, 45, 6, 10, 8 ];
+        let n = 16;
+        printpairs(A, n);
+    function printpairs(arr, sum)
+    {
+        let s = new Set();
+        for (let i = 0; i < arr.length; ++i)
+        {
+            let temp = sum - arr[i];
+            if (s.has(temp)) {
+                console.log( "Pair with given sum "
+                    + sum + " is (" + arr[i]
+                    + ", " + temp + ")");
+            }
+            s.add(arr[i]);
+        }
+    }
+```
 
 **[⬆ Back to Top](#table-of-contents)**
 
