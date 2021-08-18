@@ -4,8 +4,8 @@
 | --- | --------- |
 |   | **JS Coding** |
 |1  | [Array Questions: Unique elements](#array-questions-unique-elements) |
-|2  | [Array Questions: Nested array to single array](#what-are-the-major-features-of-react) |
-|3  | [Array Questions: Anagrams in a array of strings](#what-is-jsx) |
+|2  | [Array Questions: Nested array to single array](#array-questions-nested-array-to-single-array) |
+|3  | [Array Questions: Anagrams in a array of strings](#array-questions-anagrams-in-a-array-of-strings) |
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
 |5  | [Async await/ Fetch data from API](#how-to-create-components-in-react) |
 |6  | [Async defer](#when-to-use-a-class-component-over-a-function-component) |
@@ -19,15 +19,15 @@
 |14 | [Hoisting](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks) |
 |15 | [Object Questions:](#how-to-pass-a-parameter-to-an-event-handler-or-callback) |
 |16 | [Polyfills for bind](#polyfills-for-bind) |
-|17 | [Polyfills for find](#what-are-inline-conditional-expressions) |
-|18 | [Polyfills for findAll](#what-is-key-prop-and-what-is-the-benefit-of-using-it-in-arrays-of-elements) |
-|19 | [Polyfills for filter](#what-is-the-use-of-refs) |
-|20 | [Polyfills for forEach](#how-to-create-refs)
-|21 | [Polyfills for map](#what-are-pure-components) |
-|22 | [Polyfills for Object.Assign](#what-is-state-in-react) |
-|23 | [Polyfills for Promise.All](#what-are-props-in-react) |
-|24 | [Polyfills for reduce](#what-is-the-difference-between-state-and-props) |
-|25 | [Promises](#why-should-we-not-update-the-state-directly) |
+|17 | [Polyfills for find](#wpolyfills-for-find) |
+|18 | [Polyfills for findAll](#polyfills-for-findall) |
+|19 | [Polyfills for filter](#polyfills-for-filter) |
+|20 | [Polyfills for forEach](#polyfills-for-foreach)
+|21 | [Polyfills for map](#polyfills-for-map) |
+|22 | [Polyfills for Object.Assign](#polyfills-for-object.assign) |
+|23 | [Polyfills for Promise.All](#polyfills-for-promise.all) |
+|24 | [Polyfills for reduce](#polyfills-for-reduce) |
+|25 | [Promises](#promises) |
 |26 | [Prototypical inheritance](#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate)
 |27 | [String Questions: Reverse every word](#what-is-the-difference-between-html-and-react-event-handling) |
 |28 | [Throttling](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks) |
@@ -69,9 +69,30 @@
    
 2. ### Array Questions: Nested array to single array
 
+```jsx harmony
+    var arr = [1, 3, 4, 65, [3, 5, 6, 9, [354, 5, 43, 54, 54, 6, [232, 323, 323]]]];
+    var result = [];
+    function getSingleArray(inArr) {
+      for (var i = 0; i < inArr.length; i++) {
+        if (typeof inArr[i] == "object") {
+          getSingleArray(inArr[i]); // Calling Recursively
+        } else {
+          result.push(inArr[i]);
+        }
+      }
+    }
+
+    getSingleArray(arr);
+    console.log(result); 
+ ```
 **[⬆ Back to Top](#table-of-contents)**
 
-4. ### Polyfills for bind
+3. ### Array Questions: Anagrams in a array of strings
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+16. ### Polyfills for bind
 ```jsx harmony
     let Person = {
       name: 'Nitin',
@@ -94,6 +115,171 @@
     printMyName2();
 ```
 **[⬆ Back to Top](#table-of-contents)**
+
+17. ### Polyfills for find
+```jsx harmony
+    let values = [2,5,5]
+    let res = values.find((element, index, arr) => element > 3)
+    console.log(res)
+    Array.prototype.customFind = function(callback) {
+      for(let i=0; i<this.length; i++){
+          if(callback(this[i], i, this))
+          return this[i]
+      } 
+    }
+
+    let res2 = values.customFind((element, index, arr) => element > 3)
+    console.log(res2)
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+18. ### Polyfills for findAll
+```jsx harmony
+    let Person = {
+      name: 'Nitin',
+      lastName: 'Grover'
+    }
+    let printname = function() {
+      console.log(this.name +" , "+ this.lastName)
+    }
+    let printMyName = printname.bind(Person)
+    printMyName();
+
+    Function.prototype.customBind = function(...args){
+       let obj = this
+       let param = args.slice(1)
+       return function(...args2){
+          obj.apply(args[0], [...param, ...args2])
+       }
+    }
+    let printMyName2 = printname.customBind(Person)
+    printMyName2();
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+19. ### Polyfills for filter
+```jsx harmony
+    let values = [2,5,5]
+    let res = values.filter((element, index, arr) => element > 3)
+    console.log(res)
+    Array.prototype.customFilter = function(callback) {
+      let result = [];
+      for(let i=0; i<this.length; i++){
+          if(callback(this[i], i, this))
+          result.push(this[i])
+      }
+      return result;
+    }
+
+    let res2 = values.customFilter((element, index, arr) => element > 3)
+    console.log(res2)
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+20. ### Polyfills for forEach
+```jsx harmony
+    let values = [2,5,5]
+    values.forEach((element, index, arr) => {
+      console.log(element, index, arr)
+    })
+
+    Array.prototype.customForEach = function(callback) {
+      for(let i=0; i<this.length; i++){
+          callback(this[i], i, this)
+      }
+    }
+
+    values.customForEach((element, index, arr) => {
+      console.log(element, index, arr)
+    })
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+21. ### Polyfills for map
+```jsx harmony
+    let values = [2,5,5]
+    let res = values.map((element, index, arr) => element*10)
+    console.log(res)
+    Array.prototype.customMap = function(callback) {
+      let result = [];
+      for(let i=0; i<this.length; i++){
+          result.push(callback(this[i], i, this))
+      }
+      return result;
+    }
+
+    let res2 = values.customMap((element, index, arr) => element*10)
+    console.log(res2)
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+22. ### Polyfills for Object.assign
+```jsx harmony
+    Object.customAssign = function(target){
+      var newTo = Object(target);
+      for(var i=1; i<arguments.length; i++){
+        var nextSource = arguments[i];
+        if(nextSource !== null && nextSource !== undefined){
+          for(var nextKey in nextSource){
+            if(Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+              newTo[nextKey] = nextSource[nextKey];
+            }
+          }
+        }
+      }
+      return newTo;
+    }
+    const target = {
+      a:1,
+      b:2,
+      c:3
+    }
+    const source1 = {
+      a:10,
+      c:6
+    }
+    const source2 = {
+      c:1
+    }
+    const result = Object.customAssign(target, source1, source2)
+    console.log(result);
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+23. ### Polyfills for Promise.All
+```jsx harmony
+    Promise.all = function(promises) {
+      let results = [];
+      return new Promise((resolve, reject) => {
+          promises.forEach((el, index) => {
+              el.then((res) => {
+                  results.push(res);
+                  if(index == promises.length - 1)
+                  resolve(results)
+              }).catch(err => reject(err));
+          });
+      });
+    };
+
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+24. ### Polyfills for reduce
+```jsx harmony
+    let values = [2,5,5]
+    values.reduce((acc,curr,index,arr) => {acc*curr},1) //50
+    Array.prototype.customReduce = function(callback, initial) {
+      let acc = initial
+      for(let i=0; i<this.length; i++){
+         acc = callback(acc,this[i], i, this)
+      } 
+      return acc;
+    }
+    values.customReduce((acc,curr,index,arr) => {acc*curr},1) //50
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+
 ```
 //Debouncing & Throttling
 let counter = 0
