@@ -24,8 +24,8 @@
 |19 | [Polyfills for filter](#polyfills-for-filter) |
 |20 | [Polyfills for forEach](#polyfills-for-foreach)
 |21 | [Polyfills for map](#polyfills-for-map) |
-|22 | [Polyfills for Object.Assign](#polyfills-for-object-assign) |
-|23 | [Polyfills for Promise.All](#polyfills-for-promise-all) |
+|22 | [Polyfills for Object Assign](#polyfills-for-object-assign) |
+|23 | [Polyfills for Promise All](#polyfills-for-promise-all) |
 |24 | [Polyfills for reduce](#polyfills-for-reduce) |
 |25 | [Promises](#promises) |
 |26 | [Prototypical inheritance](#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate)
@@ -263,7 +263,7 @@
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
-22. ### Polyfills for Object.assign
+22. ### Polyfills for Object Assign
 ```jsx harmony
     Object.customAssign = function(target){
       var newTo = Object(target);
@@ -296,7 +296,7 @@
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
-23. ### Polyfills for Promise.All
+23. ### Polyfills for Promise All
 ```jsx harmony
     Promise.all = function(promises) {
       let results = [];
