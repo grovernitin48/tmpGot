@@ -141,7 +141,7 @@
 
 **Call:** The call() method invokes a function with a given `this` value and arguments provided one by one
 
-    ```javascript
+    ```jsx harmony
     var employee1 = {firstName: 'John', lastName: 'Rodson'};
     var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
 
@@ -153,9 +153,9 @@
     invite.call(employee2, 'Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
     ```
 
-    **Apply:** Invokes the function with a given `this` value and allows you to pass in arguments as an array
+   **Apply:** Invokes the function with a given `this` value and allows you to pass in arguments as an array
 
-    ```javascript
+    ```jsx harmony
     var employee1 = {firstName: 'John', lastName: 'Rodson'};
     var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
 
@@ -167,9 +167,9 @@
     invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
     ```
 
-    **bind:** returns a new function, allowing you to pass any number of arguments
+   **bind:** returns a new function, allowing you to pass any number of arguments
 
-    ```javascript
+   ```javascript
     var employee1 = {firstName: 'John', lastName: 'Rodson'};
     var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
 
@@ -181,9 +181,9 @@
     var inviteEmployee2 = invite.bind(employee2);
     inviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?
     inviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
-    ```
+   ```
 
- Call and apply are pretty interchangeable. Both execute the current function immediately. You need to decide whether it’s easier to send in an array or a comma separated list of arguments. You can remember by treating Call is for **comma** (separated list) and Apply is for **Array**. 
+Call and apply are pretty interchangeable. Both execute the current function immediately. You need to decide whether it’s easier to send in an array or a comma separated list of arguments. You can remember by treating Call is for **comma** (separated list) and Apply is for **Array**. 
     
  Whereas Bind creates a new function that will have `this` set to the first parameter passed to bind().
  
