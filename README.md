@@ -9,15 +9,16 @@
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
 |5  | [Async await/ Fetch data from API](#how-to-create-components-in-react) |
 |6  | [Async defer](#when-to-use-a-class-component-over-a-function-component) |
+|7  | [Callbacks](#callbacks) |
 |7  | [Closures](#what-are-pure-components) |
 |8  | [Currying](#currying) |
 |9  | [Call, apply, bind](#call-apply-bind) |
 |10 | [Debouncing](#debouncing) |
-|11 | [Event Bubbling](#why-should-we-not-update-the-state-directly) |
-|12 | [Event Capturing](#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate)
-|13 | [Event Delegation](#what-is-the-difference-between-html-and-react-event-handling) |
-|14 | [Hoisting](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks) |
-|15 | [Object Questions:](#how-to-pass-a-parameter-to-an-event-handler-or-callback) |
+|11 | [Event Bubbling](#event-bubbling) |
+|12 | [Event Capturing](#event-capturing)
+|13 | [Event Delegation](#event-delegation) |
+|14 | [Hoisting](#hoisting) |
+|15 | [Object Questions:](#object-question) |
 |16 | [Polyfills for bind](#polyfills-for-bind) |
 |17 | [Polyfills for find](#polyfills-for-find) |
 |18 | [Polyfills for findAll](#polyfills-for-findall) |
@@ -25,24 +26,25 @@
 |20 | [Polyfills for forEach](#polyfills-for-foreach)
 |21 | [Polyfills for map](#polyfills-for-map) |
 |22 | [Polyfills for Object Assign](#polyfills-for-object-assign) |
+|23 | [Polyfills for Push](#polyfills-for-push) |
 |23 | [Polyfills for Promise All](#polyfills-for-promise-all) |
 |24 | [Polyfills for reduce](#polyfills-for-reduce) |
 |25 | [Promises](#promises) |
-|26 | [Prototypical inheritance](#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate)
-|27 | [String Questions: Reverse every word](#what-is-the-difference-between-html-and-react-event-handling) |
+|26 | [Prototypical inheritance](#prototypical-inheritance)
+|27 | [String Questions: Reverse every word](#string-questions-reverse-every-word) |
 |28 | [Throttling](#throttling) |
-|29 | [Object Questions:](#how-to-pass-a-parameter-to-an-event-handler-or-callback) |
-|30 | [Output Questions: Const let var](#what-are-synthetic-events-in-react) |
-|31 | [Output Questions: setTimeout](#what-are-inline-conditional-expressions) |
-|32 | [Specific Questions: Minimum number of platforms to take all trains](#what-is-key-prop-and-what-is-the-benefit-of-using-it-in-arrays-of-elements) |
-|33 | [Specific Questions: Minesweeper game](#what-is-the-use-of-refs) |
-|34 | [Polyfills for forEach](#how-to-create-refs)
+|29 | [Object Questions:](#object-questions) |
+|30 | [Output Questions: Const let var](#output-questions-const-let-var) |
+|31 | [Output Questions: setTimeout](#output-questions-setTimeout) |
+|32 | [Specific Questions: Minimum number of platforms to take all trains](#specific-questions-minimum-number-of-platforms-to-take-all-trains) |
+|33 | [Specific Questions: Minesweeper game](#specific-questions-minesweeper-game) |
+|34 | [DS Binary Search Tree](#ds-binary-search-tree)
 
 
 
 1. ### Array Questions: Unique elements
 
-    ```jsx harmony
+```jsx harmony
    const a = [1,1,2,3,3,4,5,6,6]
    
    // 1. Basic Way
@@ -64,7 +66,7 @@
     // its a uniques element otherwise its a duplicatte
     // Filter function returns the array which satisfies the condition mentioned inside
     console.log(a.filter((el,ind, arr) => arr.indexOf(el) === ind));
-    ```
+ ```
    **[⬆ Back to Top](#table-of-contents)**
    
 2. ### Array Questions: Nested array to single array
@@ -141,7 +143,7 @@
 
 **Call:** The call() method invokes a function with a given `this` value and arguments provided one by one
 
-    ```jsx harmony
+```jsx harmony
     var employee1 = {firstName: 'John', lastName: 'Rodson'};
     var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
 
@@ -151,11 +153,11 @@
 
     invite.call(employee1, 'Hello', 'How are you?'); // Hello John Rodson, How are you?
     invite.call(employee2, 'Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
-    ```
+```
 
    **Apply:** Invokes the function with a given `this` value and allows you to pass in arguments as an array
 
-    ```jsx harmony
+ ```jsx harmony
     var employee1 = {firstName: 'John', lastName: 'Rodson'};
     var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
 
@@ -165,23 +167,22 @@
 
     invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How are you?
     invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
-    ```
+ ```
 
    **bind:** returns a new function, allowing you to pass any number of arguments
 
-   ```javascript
+```jsx harmony
     var employee1 = {firstName: 'John', lastName: 'Rodson'};
     var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
 
     function invite(greeting1, greeting2) {
         console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', '+ greeting2);
     }
-
     var inviteEmployee1 = invite.bind(employee1);
     var inviteEmployee2 = invite.bind(employee2);
     inviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?
     inviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
-   ```
+```
 
 Call and apply are pretty interchangeable. Both execute the current function immediately. You need to decide whether it’s easier to send in an array or a comma separated list of arguments. You can remember by treating Call is for **comma** (separated list) and Apply is for **Array**. 
     
@@ -364,6 +365,24 @@ Call and apply are pretty interchangeable. Both execute the current function imm
     }
     const result = Object.customAssign(target, source1, source2)
     console.log(result);
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+
+23. ### Polyfills for Push
+```jsx harmony
+    if (!Array.prototype.push) {
+    // Check if not already supported, then only add. No need to check this when you want to Override the method
+    // Add method to prototype of array, so that can be directly called on array
+        Array.prototype.push = function() {
+            // Use loop for multiple/any no. of elements
+            for (var i = 0; i < arguments.length; i++) {
+                this[this.length] = arguments[i];
+            }
+            // Return new length of the array
+            return this.length;
+        };
+    }
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
