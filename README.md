@@ -512,17 +512,11 @@ Call and apply are pretty interchangeable. Both execute the current function imm
    import React, { useState } from "react";
    export default function App() {
      const [rating, setRating] = useState(0);
-     const [rating2, setRating2] = useState(0);
      return (
        <>
-         <div className="row">
-           <div className="col text-center">
-             <h2>Rate me</h2>
-             <p>Rating component</p>
-             <Rate rating={rating} onRating={(rate) => setRating(rate)} />
-             <p>Rating - {rating}</p>
-           </div>
-         </div>
+           <p>Rating component</p>
+           <Rate rating={rating} onRating={(rate) => setRating(rate)} />
+           <p>Rating - {rating}</p>
        </>
      );
    }
