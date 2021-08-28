@@ -41,7 +41,7 @@
 |34 | [DS Binary Search Tree](#ds-binary-search-tree)
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
-
+|37 | [React: Input Search Filter](#react-input-search-filter)
 
 1. ### Array Questions: Unique elements
 
@@ -504,7 +504,7 @@ Call and apply are pretty interchangeable. Both execute the current function imm
 **[⬆ Back to Top](#table-of-contents)**
 
 
-35. ### React Ratings Star
+36. ### React Ratings Star
 ```jsx harmony
    //app.js
    import "./styles.css";
@@ -571,5 +571,43 @@ Call and apply are pretty interchangeable. Both execute the current function imm
      }
    };
    export default Rate;
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+
+37. ### React Input Search Filter
+```jsx harmony
+   import React, { useEffect } from "react";
+   import ReactDOM from "react-dom";
+   const people = ["Siri","Alexa","Google","Facebook","Twitter","Linkedin"];
+   function App() {
+     const [searchTerm, setSearchTerm] = React.useState("");
+     const [searchResults, setSearchResults] = React.useState([]);
+     const handleChange = (e) => setSearchTerm(e.target.value);
+     useEffect(() => {
+       const results = people.filter((person) =>
+         person.toLowerCase().includes(searchTerm)
+       );
+       setSearchResults(results);
+     }, [searchTerm]);
+     return (
+       <div className="App">
+         <input
+           type="text"
+           placeholder="Search"
+           value={searchTerm}
+           onChange={handleChange}
+         />
+         <ul>
+           {searchResults.map((item) => (
+             <li>{item}</li>
+           ))}
+         </ul>
+       </div>
+     );
+   }
+   const rootElement = document.getElementById("root");
+   ReactDOM.render(<App />, rootElement);
+
 ```
 **[⬆ Back to Top](#table-of-contents)**
