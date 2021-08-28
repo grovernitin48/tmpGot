@@ -40,7 +40,7 @@
 |33 | [Specific Questions: Minesweeper game](#specific-questions-minesweeper-game) |
 |34 | [DS Binary Search Tree](#ds-binary-search-tree)
 |35 | [React: Calculator](#react-calculator)
-
+|36 | [React: Ratings Star](#react-ratings-star)
 
 
 1. ### Array Questions: Unique elements
@@ -500,5 +500,82 @@ Call and apply are pretty interchangeable. Both execute the current function imm
       }
 
       export default App;
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+
+35. ### React Ratings Star
+```jsx harmony
+   //app.js
+   import "./styles.css";
+   import Rate from "./Rate";
+   import React, { useState } from "react";
+   export default function App() {
+     const [rating, setRating] = useState(0);
+     const [rating2, setRating2] = useState(0);
+     return (
+       <>
+         <div className="row">
+           <div className="col text-center">
+             <h2>Rate me</h2>
+             <p>Rating component</p>
+             <Rate rating={rating} onRating={(rate) => setRating(rate)} />
+             <p>Rating - {rating}</p>
+           </div>
+         </div>
+       </>
+     );
+   }
+   //rate.js
+   import React, { useMemo, useState } from "react";
+   import PropTypes from "prop-types";
+   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+   import { faStar } from "@fortawesome/free-solid-svg-icons";
+   const Rate = ({ count, rating, color, onRating }) => {
+     const [hoverRating, setHoverRating] = useState(0);
+     const getColor = (index) => {
+       if (hoverRating >= index) {
+         return color.filled;
+       } else if (!hoverRating && rating >= index) {
+         return color.filled;
+       }
+       return color.unfilled;
+     };
+     const starRating = useMemo(() => {
+       return Array(count)
+         .fill(0)
+         .map((_, i) => i + 1)
+         .map((idx) => (
+           <FontAwesomeIcon
+             key={idx}
+             className="cursor-pointer"
+             icon={faStar}
+             onClick={() => onRating(idx)}
+             style={{ color: getColor(idx) }}
+             onMouseEnter={() => setHoverRating(idx)}
+             onMouseLeave={() => setHoverRating(0)}
+           />
+         ));
+     }, [count, rating, hoverRating]);
+     return <div>{starRating}</div>;
+   };
+   Rate.propTypes = {
+     count: PropTypes.number,
+     rating: PropTypes.number,
+     onChange: PropTypes.func,
+     color: PropTypes.shape({
+       filled: PropTypes.string,
+       unfilled: PropTypes.string
+     })
+   };
+   Rate.defaultProps = {
+     count: 5,
+     rating: 0,
+     color: {
+       filled: "#f5eb3b",
+       unfilled: "#DCDCDC"
+     }
+   };
+   export default Rate;
 ```
 **[⬆ Back to Top](#table-of-contents)**
