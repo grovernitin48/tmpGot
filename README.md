@@ -39,6 +39,7 @@
 |32 | [Specific Questions: Minimum number of platforms to take all trains](#specific-questions-minimum-number-of-platforms-to-take-all-trains) |
 |33 | [Specific Questions: Minesweeper game](#specific-questions-minesweeper-game) |
 |34 | [DS Binary Search Tree](#ds-binary-search-tree)
+|35 | [React: Calculator](#react-calculator)
 
 
 
@@ -445,4 +446,59 @@ Call and apply are pretty interchangeable. Both execute the current function imm
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
+35. ### React Calculator
+```jsx harmony
+      import React, { useState, useEffect } from "react";
+      function App() {
+        const [currentSum, setCurrentSum] = useState(0);
+        const [clear, setClear] = useState(false);
+        useEffect(() => {
+          document.querySelector("#result").value = "";
+        }, []);
+        useEffect(() => {
+          if (clear) document.querySelector("#result").value = "";
+        });
+        const Calc = (e) => {
+          e.preventDefault();
+          console.log(e.target.id);
+          if (clear) setClear(false);
+          let currentNum = document.querySelector("#num").value;
+          if (currentNum === "") return;
+          let sum;
+          if (e.target.id === "add") sum = currentSum + parseInt(currentNum, 10);
+          else if (e.target.id === "subtract")
+            sum = currentSum - parseInt(currentNum, 10);
+          else if (e.target.id === "multiply")
+            sum = currentSum * parseInt(currentNum, 10);
+          setCurrentSum(sum);
+          document.querySelector("#num").value = "";
+        };
+        const Clear = (e) => {
+          e.preventDefault();
+          document.querySelector("form").reset();
+          setClear(true);
+          setCurrentSum(0);
+        };
+        return (
+          <div className="App">
+            <form>
+              <input type="text" id="result" value={currentSum} readOnly />
+              <input type="text" id="num" placeholder="enter a number" />
+              <button id="add" onClick={Calc}>
+                Add
+              </button>
+              <button id="subtract" onClick={Calc}>
+                Subtract
+              </button>
+              <button id="multiply" onClick={Calc}>
+                Multiply
+              </button>
+              <button onClick={Clear}>Clear</button>
+            </form>
+          </div>
+        );
+      }
 
+      export default App;
+```
+**[⬆ Back to Top](#table-of-contents)**
