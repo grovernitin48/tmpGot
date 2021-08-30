@@ -14,9 +14,7 @@
 |8  | [Currying](#currying) |
 |9  | [Call, apply, bind](#call-apply-bind) |
 |10 | [Debouncing](#debouncing) |
-|11 | [Event Bubbling](#event-bubbling-event-capturing) |
-|12 | [Event Capturing](#event-capturing)
-|13 | [Event Delegation](#event-delegation) |
+|11 | [Event Bubbling](#event-bubbling-capturing-delegation) |
 |14 | [Hoisting](#hoisting) |
 |15 | [Object Questions:](#object-question) |
 |16 | [Polyfills for bind](#polyfills-for-bind) |
@@ -272,6 +270,8 @@ when all the elements have registered listeners for the same event.
 So starting from the deepest element to all its ancestors, calling is performed.
 in event capturing, an event moves from the outermost element to the target. Event Capturing is performed before event bubbling.
 
+Event Delegation is basically a pattern to handle events efficiently. Instead of adding an event listener to each and every similar element, we can add an event listener to a parent element and call an event on a particular target using the target property of the event object.
+
  ```jsx harmony
       <style>
         div {
@@ -300,6 +300,22 @@ in event capturing, an event moves from the outermost element to the target. Eve
         .addEventListener('click', (e) => {
           console.log("Child Clicked!");
         }, true);
+        
+        //EVENT DELEGATION
+          <div>
+             <ul id="category">
+               <li id="laptops">laptops</li>
+               <li id="cameras">cameras</li>
+               <li id="shoes">shoes</li>
+             </ul>
+           </div>
+
+         document.querySelector("#category").addEventListener('click', (e) => {
+           if (e.target.tagName == 'LI') {
+             console.log(e.target.id);
+             window.location.href = "/" + e.target.id;
+           }
+});
 ```
  **[⬆ Back to Top](#table-of-contents)**
  
