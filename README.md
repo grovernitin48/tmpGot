@@ -221,6 +221,29 @@ Call and apply are pretty interchangeable. Both execute the current function imm
  
  **[⬆ Back to Top](#table-of-contents)**
 
+10. ### Debouncing
+```jsx harmony
+    let counter = 0
+    const getData = () => {
+      console.log("Invoked", counter++);
+    }
+
+    const debounce = (fn, delay) => {
+      let timer;
+      return function(){ 
+          let context = this,
+          args = arguments;
+         clearTimeout(timer);
+           timer = setTimeout(() => {
+            fn.apply(context, args);
+           }, delay)
+        }
+      }
+
+    const debounceFunction = debounce(getData, 300);
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 16. ### Hoisting
 It's a concept in which the JS engine takes all the variables and function declarations and puts them into memory space during the compilation of the program. So during the execution phase, it allows using a function before the declaration itself. 
 JS only hoist the declarations, not initializations.
@@ -258,28 +281,6 @@ All declarations (function, var, let, const and class) are hoisted in JavaScript
 ```
  **[⬆ Back to Top](#table-of-contents)**
  
-10. ### Debouncing
-```jsx harmony
-    let counter = 0
-    const getData = () => {
-      console.log("Invoked", counter++);
-    }
-
-    const debounce = (fn, delay) => {
-      let timer;
-      return function(){ 
-          let context = this,
-          args = arguments;
-         clearTimeout(timer);
-           timer = setTimeout(() => {
-            fn.apply(context, args);
-           }, delay)
-        }
-      }
-
-    const debounceFunction = debounce(getData, 300);
-```
-**[⬆ Back to Top](#table-of-contents)**
 
 
 16. ### Polyfills for bind
