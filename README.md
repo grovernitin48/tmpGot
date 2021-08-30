@@ -108,6 +108,26 @@
      }
    }
    console.log(Object.values(anagram));
+   
+   //ANOTHER QUESTION return an array with all the anagrams grouped together
+   var arr = ['cat', 'dog', 'tac', 'god', 'act'];
+
+   var allAnagrams = function(arr) {
+       var anagrams = {};
+       arr.forEach(function(str) {
+           var recurse = function(ana, str) {
+               if (str === '') 
+                   anagrams[ana] = 1;
+               for (var i = 0; i < str.length; i++)
+                   recurse(ana + str[i], str.slice(0, i) + str.slice(i + 1));
+           };
+           recurse('', str);
+       });
+       return Object.keys(anagrams);
+   }
+
+   console.log(allAnagrams(arr));
+   //["cat", "cta", "act", "atc", "tca", "tac", "dog", "dgo", "odg", "ogd", "gdo", "god"]
 ```
 
 **[⬆ Back to Top](#table-of-contents)**
