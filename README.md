@@ -244,6 +244,40 @@ Call and apply are pretty interchangeable. Both execute the current function imm
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
+
+11. ### Event Bubbling && Event Capturing
+
+ ```jsx harmony
+      <style>
+        div {
+          min-width: 100px;
+          min-height: 100px;
+          padding: 30px;
+          border: 1px solid black;
+        }
+        </style>
+        <div id="grandparent">
+          <div id="parent">
+            <div id="child"></div>
+          </div>
+        </div>
+
+      document.querySelector("#grandparent")
+        .addEventListener('click', (e) => {
+          console.log("Grandparent Clicked!");
+          //e.stopPropagation();
+        }, true);
+        document.querySelector("#parent")
+        .addEventListener('click', (e) => {
+          console.log("Parent Clicked!");
+        }, true);
+        document.querySelector("#child")
+        .addEventListener('click', (e) => {
+          console.log("Child Clicked!");
+        }, true);
+```
+ **[⬆ Back to Top](#table-of-contents)**
+ 
 16. ### Hoisting
 It's a concept in which the JS engine takes all the variables and function declarations and puts them into memory space during the compilation of the program. So during the execution phase, it allows using a function before the declaration itself. 
 JS only hoist the declarations, not initializations.
