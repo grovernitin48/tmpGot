@@ -10,7 +10,7 @@
 |5  | [Async await/ Fetch data from API](#how-to-create-components-in-react) |
 |6  | [Async defer](#async-defer) |
 |7  | [Callbacks](#callbacks) |
-|7  | [Closures](#what-are-pure-components) |
+|7  | [Closures](#closures) |
 |8  | [Currying](#currying) |
 |9  | [Call, apply, bind](#call-apply-bind) |
 |10 | [Debouncing](#debouncing) |
@@ -161,6 +161,49 @@ NORMAL: HTML Parsing stops when SCRIPT tag is encountered, fetch script, parse s
 ASYNC: SCRIPT fetch from the server with HTML parsing(asynchronously), stops HTML parsing when fetching is done, execute SCRIPT, after execution completes HTML parsing continues
 
 DEFER: SCRIPT fetch from the server with HTML parsing(asynchronously), but only execute when HTML parsing is completed
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+7. ### Closures
+
+Basically means Inner function can access variables and parameters of an outer function. Useful to create private variables or functions.
+
+```jsx harmony
+   function OuterFunction() {
+       var outerVariable = 100;
+       function InnerFunction() {
+           alert(outerVariable);
+       }
+       return InnerFunction;
+   }
+   var innerFunc = OuterFunction();
+   innerFunc(); // 100
+
+   //Private variables/functions
+   var counter = (function() {
+     var privateCounter = 0;
+     function changeBy(val) {
+       privateCounter += val;
+     }
+     return {
+       increment: function() {
+         changeBy(1);
+       },
+       decrement: function() {
+         changeBy(-1);
+       },
+       value: function() {
+         return privateCounter;
+       }
+     };   
+   })();
+   alert(counter.value()); // 0
+   counter.increment();
+   alert(counter.value()); // 1
+   counter.decrement();
+   alert(counter.value()); // 0
+```
 
 **[⬆ Back to Top](#table-of-contents)**
 
