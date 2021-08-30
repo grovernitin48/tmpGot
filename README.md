@@ -168,6 +168,8 @@ DEFER: SCRIPT fetch from the server with HTML parsing(asynchronously), but only 
 
 
 8. ### Currying
+Currying is a technique in which when a function, instead of taking all arguments at one time, takes the first one and return a new function that takes the second one and returns a new function and goes on until all arguments have been fulfilled.
+
 ```jsx harmony
     let multiplyB = (x,y) => {
       console.log(x*y);
@@ -264,6 +266,11 @@ It is mostly used in search bar
 
 
 11. ### Event Bubbling Event Capturing
+
+EVENT BUBBLING is a sequence of calling the event handlers from the deepest element to its parents 
+when all the elements have registered listeners for the same event. 
+So starting from the deepest element to all its ancestors, calling is performed.
+in event capturing, an event moves from the outermost element to the target. Event Capturing is performed before event bubbling.
 
  ```jsx harmony
       <style>
