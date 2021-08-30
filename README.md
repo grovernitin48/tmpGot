@@ -91,7 +91,28 @@
 **[⬆ Back to Top](#table-of-contents)**
 
 3. ### Array Questions: Anagrams in a array of strings
-4. ### Array Questions: Return 2 indices from an array, sum of their elements is= to given number?
+```jsx harmony
+   const arr = ['monk', 'konm', 'nkom', 'bbc', 'cbb', 'dell', 'ledl', 'llde'];
+   let anagram = {};
+
+   for (let i = 0; i<arr.length; i++){
+     const word = arr[i];
+     const sortedWord = word.split("").sort().join("");
+     let tempArray = [];
+     if(anagram[sortedWord]){
+       tempArray = anagram[sortedWord].length==1?anagram[sortedWord]:[...anagram[sortedWord]];
+       tempArray.push(word);
+       anagram[sortedWord] = tempArray;
+     }else{
+       anagram[sortedWord] = [word];
+     }
+   }
+   console.log(Object.values(anagram));
+```
+
+**[⬆ Back to Top](#table-of-contents)**
+
+5. ### Array Questions: Return 2 indices from an array, sum of their elements is= to given number?
  ```jsx harmony
      let A = [ 1, 4, 45, 6, 10, 8 ];
         let n = 16;
