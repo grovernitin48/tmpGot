@@ -14,7 +14,7 @@
 |8  | [Currying](#currying) |
 |9  | [Call, apply, bind](#call-apply-bind) |
 |10 | [Debouncing](#debouncing) |
-|11 | [Event Bubbling](#event-bubbling) |
+|11 | [Event Bubbling](#event-bubbling-event-capturing) |
 |12 | [Event Capturing](#event-capturing)
 |13 | [Event Delegation](#event-delegation) |
 |14 | [Hoisting](#hoisting) |
@@ -245,7 +245,7 @@ Call and apply are pretty interchangeable. Both execute the current function imm
 **[⬆ Back to Top](#table-of-contents)**
 
 
-11. ### Event Bubbling && Event Capturing
+11. ### Event Bubbling Event Capturing
 
  ```jsx harmony
       <style>
