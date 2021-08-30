@@ -221,6 +221,43 @@ Call and apply are pretty interchangeable. Both execute the current function imm
  
  **[⬆ Back to Top](#table-of-contents)**
 
+16. ### Hoisting
+It's a concept in which the JS engine takes all the variables and function declarations and puts them into memory space during the compilation of the program. So during the execution phase, it allows using a function before the declaration itself. 
+JS only hoist the declarations, not initializations.
+All these functions and variable declarations are added to the memory inside a JavaScript data structure called Lexical Environment. So that they can be used even before they are actually declared in the source code.A lexical environment is a data structure that holds identifier-variable mapping. A lexical environment is a place where variables and functions live during the program execution.
+Only function declarations are hoisted in JavaScript; function expressions are not hoisted.
+All declarations (function, var, let, const and class) are hoisted in JavaScript, while the var declarations are initialized with undefined, but let and const declarations remain uninitialized.They will only get initialized when their lexical binding (assignment) is evaluated during runtime by the JavaScript engine.
+“Temporal Dead Zone”, A time span between variable creation and its initialization where they can’t be accessed.
+
+```jsx harmony
+   console.log(num); // Returns undefined, as only declaration was hoisted, no initialization has happened at this stage
+   var num; // Declaration
+   num = 6; // Initialization
+   
+   console.log(num); // Throws ReferenceError exception
+   num = 6; // Initialization
+   
+   console.log(a);//Reference Error
+   let a = 3;
+
+   let a;
+   console.log(a); // outputs undefined
+   a = 5;
+
+   function foo () {
+     console.log(a);
+   }
+   let a = 20;
+   foo();  // This is perfectly valid
+
+   function foo() {
+    console.log(a); // ReferenceError: a is not defined
+   }
+   foo(); // This is not valid
+   let a = 20;
+```
+ **[⬆ Back to Top](#table-of-contents)**
+ 
 10. ### Debouncing
 ```jsx harmony
     let counter = 0
