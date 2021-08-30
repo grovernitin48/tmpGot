@@ -14,7 +14,7 @@
 |8  | [Currying](#currying) |
 |9  | [Call, apply, bind](#call-apply-bind) |
 |10 | [Debouncing](#debouncing) |
-|11 | [Event Bubbling](#event-bubbling-capturing-delegation) |
+|11 | [Event Bubbling Capturing Delegation](#event-bubbling-capturing-delegation) |
 |14 | [Hoisting](#hoisting) |
 |15 | [Object Questions:](#object-question) |
 |16 | [Polyfills for bind](#polyfills-for-bind) |
@@ -263,7 +263,7 @@ It is mostly used in search bar
 **[⬆ Back to Top](#table-of-contents)**
 
 
-11. ### Event Bubbling Event Capturing
+11. ### Event Bubbling Capturing Delegation
 
 EVENT BUBBLING is a sequence of calling the event handlers from the deepest element to its parents 
 when all the elements have registered listeners for the same event. 
