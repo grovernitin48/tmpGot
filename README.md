@@ -7,7 +7,7 @@
 |2  | [Array Questions: Nested array to single array](#array-questions-nested-array-to-single-array) |
 |3  | [Array Questions: Anagrams in a array of strings](#array-questions-anagrams-in-a-array-of-strings) |
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
-|5  | [Async await/ Fetch data from API](#how-to-create-components-in-react) |
+|5  | [Async await/ Fetch data from API](#async-await) |
 |6  | [Async defer](#async-defer) |
 |7  | [Callbacks](#callbacks) |
 |7  | [Closures](#closures) |
@@ -150,6 +150,50 @@
             s.add(arr[i]);
         }
     }
+```
+
+**[⬆ Back to Top](#table-of-contents)**
+
+5. ### Async await
+
+The async and await keywords enable asynchronous, promise-based behavior to be written in a cleaner style, avoiding the need to explicitly configure promise chains.
+ ```jsx harmony
+      async function funcName(url){
+       const response = await fetch(url);
+       var data = await response.json();
+       }
+
+   function resolveAfter2Seconds() {
+     return new Promise(resolve => {
+       setTimeout(() => {
+         resolve('resolved');
+       }, 2000);
+     });
+   }
+
+   async function asyncCall() {
+     console.log('calling');
+     const result = await resolveAfter2Seconds();
+     console.log(result);
+     // expected output: "resolved"
+   }
+
+   asyncCall();
+
+   //More examples
+   let promise = new Promise(function(resolve, reject) {
+     resolve("done");
+
+     reject(new Error("…")); // ignored
+     setTimeout(() => resolve("…")); // ignored
+   });
+
+   const characters = fetch('https://swapi.dev/api/people');
+   characters
+     .then (data => data.json()) 
+     .then (data => console.log(data))
+     .catch(error => console.error(error)) 
+
 ```
 
 **[⬆ Back to Top](#table-of-contents)**
