@@ -8,7 +8,7 @@
 |3  | [Array Questions: Anagrams in a array of strings](#array-questions-anagrams-in-a-array-of-strings) |
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
 |5  | [Async await/ Fetch data from API](#how-to-create-components-in-react) |
-|6  | [Async defer](#when-to-use-a-class-component-over-a-function-component) |
+|6  | [Async defer](#async-defer) |
 |7  | [Callbacks](#callbacks) |
 |7  | [Closures](#what-are-pure-components) |
 |8  | [Currying](#currying) |
@@ -33,6 +33,7 @@
 |26 | [Prototypical inheritance](#prototypical-inheritance)
 |27 | [String Questions: Reverse every word](#string-questions-reverse-every-word) |
 |28 | [Throttling](#throttling) |
+|28 | [Web Works](#web-works) |
 |29 | [Object Questions:](#object-questions) |
 |30 | [Output Questions: Const let var](#output-questions-const-let-var) |
 |31 | [Output Questions: setTimeout](#output-questions-setTimeout) |
@@ -155,6 +156,13 @@
 
 **[⬆ Back to Top](#table-of-contents)**
 
+6. ### Async Defer
+
+NORMAL: HTML Parsing stops when SCRIPT tag is encountered, fetch script, parse script and then HTML pasring continues
+ASYNC: SCRIPT fetch from the server with HTML parsing(asynchronously), stops HTML parsing when fetching is done, execute SCRIPT, after execution completes HTML parsing continues
+DEFER: SCRIPT fetch from the server with HTML parsing(asynchronously), but only execute when HTML parsing is completed
+
+**[⬆ Back to Top](#table-of-contents)**
 8. ### Currying
 ```jsx harmony
     let multiplyB = (x,y) => {
@@ -625,6 +633,17 @@ All declarations (function, var, let, const and class) are hoisted in JavaScript
 
     const throttleFunction = throttle(getData, 1000);
 ```
+**[⬆ Back to Top](#table-of-contents)**
+
+
+28. ### Web Works
+
+URL with request header-> DNS Server -> ip Address -> server -> return data(html,css,js) -> browser -> parse tree(tokeniser) -> dom tree(HTML to interact on screen)
+Script, link, style stops HTML parsing, script -> async/defer 
+HTML- CSS parsing (CSSOM)
+Render => DOM+CSSOM Multple trees: RenderObjects, RenderStyles, RenderLayers, LineBoxes 
+
+
 **[⬆ Back to Top](#table-of-contents)**
 
 35. ### React Calculator
