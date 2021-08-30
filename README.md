@@ -27,7 +27,7 @@
 |21 | [Polyfills for map](#polyfills-for-map) |
 |22 | [Polyfills for Object Assign](#polyfills-for-object-assign) |
 |23 | [Polyfills for Push](#polyfills-for-push) |
-|23 | [Polyfills for Promise All](#polyfills-for-promise-all) |
+|23 | [Polyfills for Promise and Promise All](#polyfills-for-promise-and-promise-all) |
 |24 | [Polyfills for reduce](#polyfills-for-reduce) |
 |25 | [Promises](#promises) |
 |26 | [Prototypical inheritance](#prototypical-inheritance)
@@ -417,8 +417,87 @@ Call and apply are pretty interchangeable. Both execute the current function imm
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
-23. ### Polyfills for Promise All
+23. ### Polyfills for Promise and Promise All
 ```jsx harmony
+
+   function PromisePolyFill(executor) {
+        let onResolve, onReject;
+        let fulfilled = false,
+          rejected = false,
+          called = false,
+          value;
+        function resolve(v) {
+          fulfilled = true;
+          value = v;
+          if (typeof onResolve === "function") {
+            onResolve(value);
+            called = true;
+          }
+        }
+        function reject(reason) {
+          rejected = true;
+          value = reason;
+          if (typeof onReject === "function") {
+            onReject(value);
+            called = true;
+          }
+        }
+        this.then = function (callback) {
+          onResolve = callback;
+          if (fulfilled && !called) {
+            called = true;
+            onResolve(value);
+          }
+          return this;
+        };
+        this.catch = function (callback) {
+          onReject = callback;
+          if (rejected && !called) {
+            called = true;
+            onReject(value);
+          }
+          return this;
+        };
+        try {
+          executor(resolve, reject);
+        } catch (error) {
+          reject(error);
+        }
+      }
+
+      PromisePolyFill.resolve = (val) =>
+        new PromisePolyFill(function executor(resolve, _reject) {
+          resolve(val);
+        });
+
+      PromisePolyFill.reject = (reason) =>
+        new PromisePolyFill(function executor(resolve, reject) {
+          reject(reason);
+        });
+
+      PromisePolyFill.all = (promises) => {
+        let fulfilledPromises = [],
+          result = [];
+        function executor(resolve, reject) {
+          promises.forEach((promise, index) =>
+            promise
+              .then((val) => {
+                fulfilledPromises.push(true);
+                result[index] = val;
+
+                if (fulfilledPromises.length === promises.length) {
+                  return resolve(result);
+                }
+              })
+              .catch((error) => {
+                return reject(error);
+              })
+          );
+        }
+        return new PromisePolyFill(executor);
+      };
+      
+   //ONLY PROMISE.ALL
     Promise.all = function(promises) {
       let results = [];
       return new Promise((resolve, reject) => {
