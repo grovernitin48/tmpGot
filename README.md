@@ -159,10 +159,14 @@
 6. ### Async Defer
 
 NORMAL: HTML Parsing stops when SCRIPT tag is encountered, fetch script, parse script and then HTML pasring continues
+
 ASYNC: SCRIPT fetch from the server with HTML parsing(asynchronously), stops HTML parsing when fetching is done, execute SCRIPT, after execution completes HTML parsing continues
+
 DEFER: SCRIPT fetch from the server with HTML parsing(asynchronously), but only execute when HTML parsing is completed
 
 **[⬆ Back to Top](#table-of-contents)**
+
+
 8. ### Currying
 ```jsx harmony
     let multiplyB = (x,y) => {
@@ -230,6 +234,12 @@ Call and apply are pretty interchangeable. Both execute the current function imm
  **[⬆ Back to Top](#table-of-contents)**
 
 10. ### Debouncing
+
+Debouncing is a practice used to improve browser performance. 
+Basically it is used to ensure that time-consuming tasks do not fire so often, 
+so it limits the rate at which a function gets invoked.
+It is mostly used in search bar
+
 ```jsx harmony
     let counter = 0
     const getData = () => {
@@ -610,6 +620,9 @@ All declarations (function, var, let, const and class) are hoisted in JavaScript
 **[⬆ Back to Top](#table-of-contents)**
 
 28. ### Throttling
+
+Throttling is used to call a function after a particular interval of time, calculated only after the first click is executed. Basically it restrain user to invoke any expensive function continously.
+
 ```jsx harmony
     let counter = 0
     const getData = () => {
