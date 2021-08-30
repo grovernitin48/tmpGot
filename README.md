@@ -41,6 +41,7 @@
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
+|38 | [React: Adding input to array](#react-adding-input-to-array)
 
 1. ### Array Questions: Unique elements
 
@@ -932,5 +933,35 @@ Render => DOM+CSSOM Multple trees: RenderObjects, RenderStyles, RenderLayers, Li
    const rootElement = document.getElementById("root");
    ReactDOM.render(<App />, rootElement);
 
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+
+38. ### React Adding input to array
+```jsx harmony
+   import {useState} from 'react';
+   export default function App() {
+     const [arr, setArray] = useState(['nitin','grover','shanta']);
+     const [val, setValue] = useState();
+     const handleClick = (e) => {
+       e.preventDefault();
+       setArray(prevState => [...prevState, val])
+     }
+     const appendList = (e) => {
+       setValue(e.target.value)
+     }
+     return (
+       <div className="App">
+         <input type="text" value={val} onChange={(e) => appendList(e)} />
+         <button type="submit" onClick={(e) => handleClick(e)}> Submit</button>
+         <ul>
+         { arr.map((el, index) => {
+           return( <li key={index}>{el}</li> )
+         })
+         }
+         </ul>
+       </div>
+     );
+   }
 ```
 **[⬆ Back to Top](#table-of-contents)**
