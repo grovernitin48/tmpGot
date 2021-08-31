@@ -39,6 +39,7 @@
 |34 | [Code Reverse String Number](#code-reverse-string-number) |
 |34 | [Code Minimum Platform](#code-minimum-platform) |
 |34 | [Code Sort 012](#code-sort-012) |
+|34 | [Code Count Frequency](#code-count-frequency) |
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
@@ -1373,6 +1374,70 @@ longestPalStrOp("forgeeksskeegfor");
       let arr = [ 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 ];
       let n = 12;
       sort012(arr, n);
+
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+34. ### Code Count Frequency
+```jsx harmony
+   // O(n) extra space and O(n) time
+      function findCounts(arr,n){
+         let hash = new Array(n); // Hashmap
+         for(let i=0;i<n;i++){hash[i]=0;}
+         let i = 0;	
+         while (i < n){
+            hash[arr[i] - 1]++; // Update the frequency of array[i]
+            i++; // Increase the index
+         }
+         for(i = 0; i < n; i++){console.log((i + 1) + " -> "+hash[i]);}
+      }
+      let arr = [ 2, 3, 3, 2, 5 ];
+      findCounts(arr, arr.length);
+
+      // The idea is to traverse the given array, use elements as an index and store their 
+      // counts at the index. Consider the basic approach, a Hashmap of size n is needed 
+      // and the array is also of size n. So the array can be used as a hashmap, all the 
+      // elements of the array are from 1 to n, i.e. all are positive elements. So the 
+      // frequency can be stored as negative. This might lead to a problem. Let i-th 
+      // element be a then the count should be stored at array[a-1], but when the 
+      // frequency will be stored the element will be lost. To deal with this problem, 
+      // first, replace the ith element by array[a-1] and then put -1 at array[a-1]. 
+      // So our idea is to replace the element by frequency and store the element 
+      // in the current index and if the element at array[a-1] is already negative, 
+      //   then it is already replaced by a frequency so decrement array[a-1].
+      // O(1) no extra space and O(n) time
+
+
+      function findCounts(arr, n){
+         let i = 0;
+         while (i < n){
+            // If this element is already processed,then nothing to do
+            if (arr[i] <= 0){
+               i++;
+               continue;
+            }
+            // Find index corresponding to this element
+            let elementIndex = arr[i] - 1;
+            // If the elementIndex has an element that is not processed yet, then first store
+            // that element to arr[i] so that we don't lose anything.
+            if (arr[elementIndex] > 0){
+               arr[i] = arr[elementIndex];
+               // After storing arr[elementIndex], change it to store initial count of 'arr[i]'
+               arr[elementIndex] = -1;
+            }
+            else{
+               // If this is NOT first occ of arr[i], then decrement its count.
+               arr[elementIndex]--;
+               // And initialize arr[i] as 0 means the element 'i+1' is not seen so far
+               arr[i] = 0;
+               i++;
+            }
+         }
+          for(let j = 0; j < n; j++){console.log((j + 1) + " -> "+Math.abs(arr[j]));}
+      }
+
+      let arr = [ 2, 3, 3, 2, 5 ];
+      findCounts(arr, arr.length);
 
 ```
 **[⬆ Back to Top](#table-of-contents)**
