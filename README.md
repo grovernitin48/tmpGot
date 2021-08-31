@@ -41,6 +41,7 @@
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
 |38 | [React: Adding input to array](#react-adding-input-to-array)
+|38 | [React: Useref Usememo Usecallback](#react-useref-usememo-usecallback)
 |39 | [React: Learning](#react-learning)
 
 1. ### Array Questions: Unique elements
@@ -1027,6 +1028,114 @@ A deep copying means that value of the new variable is disconnected from the ori
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
+38. ### React UseRef UseMemo UseCallback
+```jsx harmony
+      import React, { useEffect, useRef } from "react";
+      import Input from "./Input"; // new
+
+      export default function App(props) {
+        const userNameRef = useRef(null);
+        const passwordRef = useRef(null);
+        const submitBtnRef = useRef(null);
+
+        useEffect(() => {
+          userNameRef.current.focus();
+        }, []);
+
+        // This function is used to handle the key press.
+        // Whenever user hits enter it moves to the next element
+        const handleKeyPress = (e, inputType) => {
+          if (e.key === "Enter") {
+            switch (inputType) {
+              // Checks if Enter pressed from the username field?
+              case "username":
+                // Moves the focus to the password input field
+                passwordRef.current.focus();
+                break;
+              // Checks if Enter pressed from the password field?
+              case "password":
+                // Moves the focus to the submit button
+                submitBtnRef.current.focus();
+                e.preventDefault();
+                break;
+              default:
+                break;
+            }
+          }
+        };
+
+        // Function to handle the submit click from the button
+        const handleSubmit = () => {
+          alert("submitted");
+        };
+
+        return (
+          <div>
+            {/* New. Using the Component instead of input element */}
+            <Input
+              type="text"
+              name="username"
+              ref={userNameRef}
+              onKeyDown={(e) => handleKeyPress(e, "username")}
+            />
+            {/* New. Using the Component instead of input element */}
+            <Input
+              type="password"
+              name="password"
+              ref={passwordRef}
+              onKeyDown={(e) => handleKeyPress(e, "password")}
+            />
+            <button ref={submitBtnRef} onClick={handleSubmit}>
+              Login
+            </button>
+          </div>
+        );
+      }
+      //INPUT.JS
+      import React from "react";
+      const Input = (props, ref) => {
+        /* assigning the ref attribute in input and spreading 
+      the other props which will contain type, name, onkeydown etc */
+        return <input {...props} ref={ref} />;
+      };
+      // wrapping the Input component with forwardRef
+      const forwardedRef = React.forwardRef(Input);
+      export default forwardedRef;
+      
+      //USE MEMO
+      import { useState, useMemo } from 'react';
+      export function CalculateFactorial() {
+        const [number, setNumber] = useState(1);
+        const [inc, setInc] = useState(0);
+        const factorial = useMemo(() => factorialOf(number), [number]);
+        const onChange = event => {
+          setNumber(Number(event.target.value));
+        };
+        const onClick = () => setInc(i => i + 1);
+        return (
+          <div>
+            <input type="number" value={number} onChange={onChange} />
+             {factorial}
+            <button onClick={onClick}>Re-render</button>
+          </div>
+        );
+      }
+      function factorialOf(n) {
+        return n <= 0 ? 1 : n * factorialOf(n - 1);
+      }
+      
+      //USE CALBACK
+      import { useCallback } from 'react';
+      function MyComponent({ prop }) {
+        const callback = () => {
+          return 'Result';
+        };
+        const memoizedCallback = useCallback(callback, [prop]);
+        return <ChildComponent callback={memoizedCallback} />;
+      }
+   
+```
+**[⬆ Back to Top](#table-of-contents)**
 
 38. ### React Learning
 
