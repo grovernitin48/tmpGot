@@ -37,6 +37,7 @@
 |33 | [Code Liked List](#code-linked-list) |
 |34 | [Code Longest Palindrome](#code-longest-palindrome) |
 |34 | [Code Reverse String Number](#code-reverse-string-number) |
+|34 | [Code Minimum Platform](#code-minimum-platform) |
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
@@ -1241,6 +1242,85 @@ longestPalStrOp("forgeeksskeegfor");
 
 ```
 **[⬆ Back to Top](#table-of-contents)**
+
+34. ### Code Minimum Platform
+
+```jsx harmony
+      //Run 2 nested loops, outer loop from start to end and inner from i+1 to end.
+      // For every iteration of outer loop find the count of intervals that intersect with the current interval.
+      // Update the answer with the maximum count of overlap in each iteration of the outer loop.
+      //Two nested loops,time complexity O(n^2).Space Complexity: O(1)
+      function max(a,b) {
+         if(a==b){return a;}
+         else{
+            if(a>b){return a;}
+            else{return b;} 
+          }
+      }
+      // Returns minimum number of platforms required
+      function findPlatform( arr, dep, n) {
+         // plReq => no. of platforms needed at a time
+         var plReq = 1, result = 1;
+         var i = 1, j = 0;
+         // run a nested loop to find overlap
+         for (var i = 0; i < n; i++) {
+            // minimum platform
+            plReq = 1;
+            for (var j = i + 1; j < n; j++) {
+               // check for overlap
+            if ((arr[i] >= arr[j] && arr[i] <= dep[j]) ||
+            (arr[j] >= arr[i] && arr[j] <= dep[i]))
+                  plReq++;
+            }
+            // update result
+            result = max(result, plReq);
+         }
+         return result;
+      }
+      var arr = [ 900, 940, 950, 1100, 1500, 1800 ];
+      var dep = [ 910, 1200, 1120, 1130, 1900, 2000 ];
+      var n =6;
+      console.log(findPlatform(arr, dep, n));
+
+
+      //consider all events in sorted order. Once the events are in sorted order, 
+      //trace no of trains at any time keeping track of trains that arrived, but not departed.
+      //Total platforms at any time can be obtained by subtracting total departures from total arrivals by that time.
+      // Create two pointers i=0, and j=0 and a variable to store ans and current count plat
+      // Run a loop while i<n and j<n and compare the ith element of arrival array and jth element of departure array.
+      // If the arrival time is less than or equal to departure then one more platform is needed so increase the count,
+      // plat++ and increment i Else if the arrival time greater than departure then one less platform is needed 
+      //so decrease the count, i.e. plat– and increment j
+      //One traversal O(n) of both the array is needed after sorting O(N * log N), so the time complexity is O(N * log N).
+
+      function findPlatform(arr, dep, n)
+      {
+         arr = arr.sort(); dep = dep.sort();
+         let plat_needed = 1; let result = 1; let i = 1;let j = 0;
+         while (i < n && j < n) {
+            // If next event in sorted order is arrival, increment count of platforms needed
+            if (arr[i] <= dep[j]) {
+               plat_needed++;
+               i++;
+            }
+            // Else decrement count of platforms needed
+            else if (arr[i] > dep[j]) {
+               plat_needed--;
+               j++;
+            }
+            // Update result if needed
+            if (plat_needed > result)
+               result = plat_needed;
+         }
+         return result;
+      }
+      var arr = [ 900, 940, 950, 1100, 1500, 1800 ];
+      var dep = [ 910, 1200, 1120, 1130, 1900, 2000 ];
+      var n =6;
+      console.log(findPlatform(arr, dep, n));
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 
 35. ### React Calculator
 ```jsx harmony
