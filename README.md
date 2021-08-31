@@ -32,6 +32,8 @@
 |28 | [Web Works](#web-works) |
 |29 | [Object Questions:](#object-questions) |
 |30 | [Output Questions](#output-questions) |
+|31 | [Code FizzBuzz](#code-fizz-buzz) |
+|31 | [Code Minesweeper](#code-minesweeper) |
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
@@ -884,6 +886,58 @@ A deep copying means that value of the new variable is disconnected from the ori
    
    String.prototype.alternate = function() {return 'HloWrd'};
    console.log('Hello World!'.alternate()); // HloWrd
+
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+31. ### Code Fizz Buzz
+
+```jsx harmony
+  for (var i=1; i<=100; i++)
+    {
+        if (i%15 === 0)   
+            console.log("FizzBuzz" + " ");
+        else if (i%3 === 0)
+            console.log("Fizz" + " "); 
+        else if (i%5 === 0)                   
+            console.log("Buzz" + " ");              
+        else      
+            console.log(i + " ");              
+    }
+   for (var i=1; i<=100; i++)
+       {
+         var result='';
+           if (i%3 === 0){ result += 'Fizz ';  }
+           if (i%5 === 0){ result += 'Buzz ';  }
+         if(result === ''){ result = i; }
+         console.log(result);       
+       }
+
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+32. ### Code Minesweeper
+
+```jsx harmony
+  for (var i=1; i<=100; i++)
+    {
+        if (i%15 === 0)   
+            console.log("FizzBuzz" + " ");
+        else if (i%3 === 0)
+            console.log("Fizz" + " "); 
+        else if (i%5 === 0)                   
+            console.log("Buzz" + " ");              
+        else      
+            console.log(i + " ");              
+    }
+   for (var i=1; i<=100; i++)
+       {
+         var result='';
+           if (i%3 === 0){ result += 'Fizz ';  }
+           if (i%5 === 0){ result += 'Buzz ';  }
+         if(result === ''){ result = i; }
+         console.log(result);       
+       }
 
 ```
 **[⬆ Back to Top](#table-of-contents)**
