@@ -919,25 +919,47 @@ A deep copying means that value of the new variable is disconnected from the ori
 32. ### Code Minesweeper
 
 ```jsx harmony
-  for (var i=1; i<=100; i++)
-    {
-        if (i%15 === 0)   
-            console.log("FizzBuzz" + " ");
-        else if (i%3 === 0)
-            console.log("Fizz" + " "); 
-        else if (i%5 === 0)                   
-            console.log("Buzz" + " ");              
-        else      
-            console.log(i + " ");              
-    }
-   for (var i=1; i<=100; i++)
-       {
-         var result='';
-           if (i%3 === 0){ result += 'Fizz ';  }
-           if (i%5 === 0){ result += 'Buzz ';  }
-         if(result === ''){ result = i; }
-         console.log(result);       
+    <div class="container">
+       <div class="grid"></div>
+     </div>
+   .grid {
+     height: 400px;
+     width: 400px;
+     display: flex;
+     flex-wrap: wrap;
+     background-color: grey;
+   }
+   .grid div {
+     height: 40px;
+     width: 40px;
+   }
+   .bomb {
+     background-color: red;
+   }
+   document.addEventListener('DOMContentLoaded', () => {
+     const grid = document.querySelector('.grid')
+     let width = 10
+     let bombAmount = 25
+     let squares = []
+     //create Board
+     function createBoard() {
+       //First start writing loop then get shuffled game array with random bombs
+       const bombsArray = Array(bombAmount).fill('bomb')
+       const emptyArray = Array(width*width - bombAmount).fill('valid')
+       const gameArray = emptyArray.concat(bombsArray)
+       const shuffledArray = gameArray.sort(() => Math.random() -0.5)
+
+       for(let i = 0; i < width*width; i++) {
+         const square = document.createElement('div')
+         square.setAttribute('id', i)
+         square.classList.add(shuffledArray[i])
+         grid.appendChild(square)
+         squares.push(square)
        }
+     }
+     createBoard();
+   });
+    
 
 ```
 **[⬆ Back to Top](#table-of-contents)**
