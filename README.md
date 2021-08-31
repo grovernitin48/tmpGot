@@ -938,18 +938,18 @@ A deep copying means that value of the new variable is disconnected from the ori
    }
    document.addEventListener('DOMContentLoaded', () => {
      const grid = document.querySelector('.grid')
-     let width = 10
-     let bombAmount = 25
+     let totalBox = 100
+     let bombCount = 25
      let squares = []
      //create Board
      function createBoard() {
        //First start writing loop then get shuffled game array with random bombs
-       const bombsArray = Array(bombAmount).fill('bomb')
-       const emptyArray = Array(width*width - bombAmount).fill('valid')
+       const bombsArray = Array(bombCount).fill('bomb')
+       const emptyArray = Array(totalBox - bombCount).fill('valid')
        const gameArray = emptyArray.concat(bombsArray)
        const shuffledArray = gameArray.sort(() => Math.random() -0.5)
 
-       for(let i = 0; i < width*width; i++) {
+       for(let i = 0; i < totalBox; i++) {
          const square = document.createElement('div')
          square.setAttribute('id', i)
          square.classList.add(shuffledArray[i])
