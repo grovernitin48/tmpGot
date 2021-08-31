@@ -16,7 +16,7 @@
 |10 | [Debouncing](#debouncing) |
 |11 | [Event Bubbling Capturing Delegation](#event-bubbling-capturing-delegation) |
 |14 | [Hoisting](#hoisting) |
-|15 | [Object Questions:](#object-question) |
+|15 | [Optimization](#optimization) |
 |16 | [Polyfills for bind](#polyfills-for-bind) |
 |17 | [Polyfills for find](#polyfills-for-find) |
 |18 | [Polyfills for findAll](#polyfills-for-findall) |
@@ -27,7 +27,6 @@
 |23 | [Polyfills for Push](#polyfills-for-push) |
 |23 | [Polyfills for Promise and Promise All](#polyfills-for-promise-and-promise-all) |
 |24 | [Polyfills for reduce](#polyfills-for-reduce) |
-|25 | [Promises](#promises) |
 |26 | [Prototypical inheritance](#prototypical-inheritance)
 |27 | [String Questions: Reverse every word](#string-questions-reverse-every-word) |
 |28 | [Throttling](#throttling) |
@@ -155,7 +154,7 @@
 
 **[⬆ Back to Top](#table-of-contents)**
 
-5. ### Async await
+5. ### Async await Promises
 
 The async and await keywords enable asynchronous, promise-based behavior to be written in a cleaner style, avoiding the need to explicitly configure promise chains.
  ```jsx harmony
@@ -406,6 +405,27 @@ Event Delegation is basically a pattern to handle events efficiently. Instead of
 });
 ```
  **[⬆ Back to Top](#table-of-contents)**
+ 
+ 
+16. ### Optimization
+
+Reduce the Number of HTTP Requests 
+Http2 multiple requests same time
+Async defer
+Compress js css Single bundle
+Optimizing image size, image according to screen resolution
+Use CDN
+Improve ttfb time to first byte, server framework loopback
+Link rel=dns-prefetch, preconnect, prefetch, prerender
+Tree shaking in webpage during minification production mode
+dead code elimination 
+Use exports true using terser
+Package json side effects false
+Array regex
+/#_PURE_/
+ 
+ **[⬆ Back to Top](#table-of-contents)**
+ 
  
 16. ### Hoisting
 It's a concept in which the JS engine takes all the variables and function declarations and puts them into memory space during the compilation of the program. So during the execution phase, it allows using a function before the declaration itself. 
@@ -729,6 +749,26 @@ All declarations (function, var, let, const and class) are hoisted in JavaScript
     values.customReduce((acc,curr,index,arr) => {acc*curr},1) //50
 ```
 **[⬆ Back to Top](#table-of-contents)**
+
+26. ### Prototypical inheritance
+
+As we know JS has only one construct: objects. So to comply with OOPs technique of inheritance
+Each object has a private property which holds a link to another object called its prototype. That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. And null has no prototype, and acts as the final stop in this prototype chain.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+28. ### String Questions Reverse Every Word
+
+```jsx harmony
+
+   function wordsReverser(string){
+   return string.split("").reverse().join("").split(" ").reverse().join(" ")  
+   }
+   
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 
 28. ### Throttling
 
