@@ -38,6 +38,7 @@
 |34 | [Code Longest Palindrome](#code-longest-palindrome) |
 |34 | [Code Reverse String Number](#code-reverse-string-number) |
 |34 | [Code Minimum Platform](#code-minimum-platform) |
+|34 | [Code Sort 012](#code-sort-012) |
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
@@ -1321,6 +1322,60 @@ longestPalStrOp("forgeeksskeegfor");
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
+34. ### Code Sort 012
+
+```jsx harmony
+   //It requires two traversals of array.
+      function sort012(arr, n){
+            let count0 = 0, count1 = 0; let count2 = 0;
+            for (let i = 0; i < n; i++) {
+               if (arr[i] == 0){count0++;}
+               if (arr[i] == 1){count1++;}
+               if (arr[i] == 2){count2++;}
+            }
+            // Putting the 0,1,2 in the array
+            for (let i = 0; i < count0; i++){arr[i] = 0;}	
+            for (let i = count0; i <(count0 + count1); i++){arr[i] = 1;}
+            for (let i = (count0 + count1);i < n; i++){arr[i] = 2;}
+            console.log(arr)
+         }
+      let arr = [ 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 ];
+      let n = 12;
+      sort012(arr, n);
+
+      // Traverse the array from start to end and mid is less than high. (Loop counter is i)
+      // If the element is 0 then swap the element with the element at index low and update 
+      //low = low + 1 and mid = mid + 1
+      // If the element is 1 then update mid = mid + 1
+      // If the element is 2 then swap the element with the element at index high and update 
+      //high = high – 1 and update i = i – 1. As the swapped element is not processed
+      //Time Complexity: O(n). Only one traversal of the array is needed
+      function sort012(a,arr_size){
+            let lo = 0;let hi = arr_size - 1;let mid = 0;let temp = 0;
+              while (mid <= hi){
+                  if(a[mid] == 0){
+                      temp = a[lo];
+                      a[lo] = a[mid];
+                      a[mid] = temp;
+                      lo++;
+                      mid++;
+                  }
+                  else if(a[mid] == 1){mid++;}
+                  else{
+                      temp = a[mid];
+                      a[mid] = a[hi];
+                      a[hi] = temp;
+                      hi--;
+                  }   
+              }
+            console.log(a)
+         }
+      let arr = [ 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 ];
+      let n = 12;
+      sort012(arr, n);
+
+```
+**[⬆ Back to Top](#table-of-contents)**
 
 35. ### React Calculator
 ```jsx harmony
