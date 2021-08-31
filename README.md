@@ -994,186 +994,129 @@ A deep copying means that value of the new variable is disconnected from the ori
 33. ### Code Linked List
 
 ```jsx harmony
-      // Construct Single Node
-      class Node {
-        constructor(data, next = null) {
-          this.data = data;
-          this.next = next;
-        }
-      }
+     class LinkedList {
+     constructor(value) {
+       this.head = {
+         value: value,
+         next: null
+       };
+       this.tail = this.head;
+       this.length = 1;
+     }
+     append(value) {
+       const newNode = {
+         value: value,
+         next: null
+       }
+       this.tail.next = newNode;
+       this.tail = newNode;
+       this.length++;
+       return this;
+     }
+     prepend(value) {
+       const newNode = {
+         value: value,
+         next: null
+       }
+       newNode.next = this.head;
+       this.head = newNode;
+       this.length++;
+       return this;
+     }
+     printList() {
+       const array = [];
+       let currentNode = this.head;
+       while (currentNode !== null) {
+         array.push(currentNode.value)
+         currentNode = currentNode.next
+       }
+       return array;
+     }
+     insert(index, value) {
+       //Check for proper parameters;
+       if (index >= this.length) {
+         console.log('yes')
+         return this.append(value);
+       }
 
-      // Create/Get/Remove Nodes From Linked List
-      class LinkedList {
-        constructor() {
-          this.head = null;
-          this.size = 0;
-        }
+       const newNode = {
+         value: value,
+         next: null
+       }
+       const leader = this.traverseToIndex(index - 1);
+       const holdingPointer = leader.next;
+       leader.next = newNode;
+       newNode.next = holdingPointer;
+       this.length++;
+       return this.printList();
+     }
+     traverseToIndex(index) {
+       //Check parameters
+       let counter = 0;
+       let currentNode = this.head;
+       while (counter !== index) {
+         currentNode = currentNode.next;
+         counter++;
+       }
+       return currentNode;
+     }
+     remove(index) {
+       // Check Parameters      
+       const leader = this.traverseToIndex(index - 1);
+       const unwantedNode = leader.next;
+       leader.next = unwantedNode.next;
+       this.length--;
+       return this.printList();
+     }
+     reverse() {
+       let currentNode = this.head;
+       var previous = null;
 
-        // 1. Insert first node
-        insertFirst(data) {
-          this.head = new Node(data, this.head);
-          this.size++;
-        }
-
-        // 2. Insert last node
-        insertLast(data) {
-          let node = new Node(data);
-          let current;
-
-          // If empty, make head
-          if (!this.head) {
-            this.head = node;
-          } else {
-            current = this.head;
-
-            while (current.next) {
-              current = current.next;
-            }
-
-            current.next = node;
-          }
-
-          this.size++;
-        }
-
-        // 3. Insert at index
-        insertAt(data, index) {
-          //  If index is out of range
-          if (index > 0 && index > this.size) {
-            return;
-          }
-
-          // If first index
-          if (index === 0) {
-            this.insertFirst(data);
-            return;
-          }
-
-          const node = new Node(data);
-          let current, previous;
-
-          // Set current to first
-          current = this.head;
+       while (currentNode) {
+         // save next or you lose it!!!
+         var save = currentNode.next;
+         // reverse pointer
+         currentNode.next = previous;
+         // increment previous to current node
+         previous = currentNode;
+         // increment node to next node or null at end of list
+         currentNode = save;
+       }
+       this.tail = this.head;
+       this.head = previous;
+       return this.printList()
+     }
+     getAt(index){
+          let currentNode = this.head;
           let count = 0;
 
-          while (count < index) {
-            previous = current; // Node before index
-            count++;
-            current = current.next; // Node after index
-          }
+             while (currentNode) {
+               if (count == index) {
+                 console.log(currentNode.value);
+               }
+               count++;
+               currentNode = currentNode.next;
+             }
 
-          node.next = current;
-          previous.next = node;
+             return null;
+     }
+     clearList(){
+       this.head = null;
+       this.length = 0;
+     }
+   }
 
-          this.size++;
-        }
-
-        // 4. Get at index
-        getAt(index) {
-          let current = this.head;
-          let count = 0;
-
-          while (current) {
-            if (count == index) {
-              console.log(current.data);
-            }
-            count++;
-            current = current.next;
-          }
-
-          return null;
-        }
-
-        // 5. Remove at index
-        removeAt(index) {
-          if (index > 0 && index > this.size) {
-            return;
-          }
-
-          let current = this.head;
-          let previous;
-          let count = 0;
-
-          // Remove first
-          if (index === 0) {
-            this.head = current.next;
-          } else {
-            while (count < index) {
-              count++;
-              previous = current;
-              current = current.next;
-            }
-
-            previous.next = current.next;
-          }
-
-          this.size--;
-        }
-
-        // 6. Clear list
-        clearList() {
-          this.head = null;
-          this.size = 0;
-        }
-
-        //7. Reverse Linked List
-        // O(n) time & O(1) space
-      //    reverseLinkedList(ll) {
-      //     let node = ll,
-      //         previous,
-      //         tmp;
-
-      //    while (node) {
-      //      // save next before we overwrite node.next!
-      //      tmp = node.next;
-
-      //     // reverse pointer
-      //     node.next = previous;
-
-      //     // step forward in the list
-      //     previous = node;
-      //     node = tmp;
-      //     }
-      //    return previous;
-      //   }
-
-        // O(n) time & O(n) space
-        reverseLinkedList(ll) {
-         if (!ll || !ll.next) {
-           return ll;
-         }
-         let tmp = reverse(ll.next);
-         ll.next.next = head;
-         ll.next = undefined;
-         return tmp;
-        }
-
-        //8. Print list data
-        printListData() {
-          let current = this.head;
-
-          while (current) {
-            console.log(current.data);
-            current = current.next;
-          }
-        }
-      }
-
-      const ll = new LinkedList();
-      ll.insertFirst(300);
-      ll.insertFirst(200);
-      ll.insertFirst(100);
-      ll.insertLast(400);
-      ll.insertAt(500, 4);
-
-      //ll.clearList();
-      //ll.getAt(2);
-      //ll.printListData();
-
-      ll.reverseLinkedList(ll);
-      ll.printListData();
-
-
+   let myLinkedList = new LinkedList(10);
+   myLinkedList.append(5)
+   myLinkedList.append(16)
+   myLinkedList.prepend(1)
+   myLinkedList.insert(2, 99)
+   myLinkedList.remove(2)
+   console.log(myLinkedList.printList());
+   console.log(myLinkedList.reverse()); 
+   myLinkedList.getAt(2);
+   myLinkedList.clearList();
+     
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
