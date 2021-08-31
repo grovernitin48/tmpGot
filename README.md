@@ -1048,7 +1048,7 @@ The CSS box-sizing property allows us to include the padding and border in an el
    <BrowserRouter>A <Router> that uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL.
 Connect : The connect() function connects a React component to a Redux store.It provides its connected component with the pieces of the data it needs from the store, and the functions it can use to dispatch actions to the store.It does not modify the component class passed to it; instead, it returns a new, connected component class that wraps the component you passed in.
 
-      useCallback and useMemo both expect a function and an array of dependencies. The difference is that useCallback returns its function when the dependencies change while useMemo calls its function and returns the result. useCallback(fn, deps) is equivalent to useMemo(() => fn, deps).
+ useCallback and useMemo both expect a function and an array of dependencies. The difference is that useCallback returns its function when the dependencies change while useMemo calls its function and returns the result. useCallback(fn, deps) is equivalent to useMemo(() => fn, deps).
 
 
 **[⬆ Back to Top](#table-of-contents)**
