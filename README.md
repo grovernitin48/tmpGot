@@ -32,8 +32,7 @@
 |28 | [Throttling](#throttling) |
 |28 | [Web Works](#web-works) |
 |29 | [Object Questions:](#object-questions) |
-|30 | [Output Questions: Const let var](#output-questions-const-let-var) |
-|31 | [Output Questions: setTimeout](#output-questions-setTimeout) |
+|30 | [Output Questions](#output-questions) |
 |32 | [Specific Questions: Minimum number of platforms to take all trains](#specific-questions-minimum-number-of-platforms-to-take-all-trains) |
 |33 | [Specific Questions: Minesweeper game](#specific-questions-minesweeper-game) |
 |34 | [DS Binary Search Tree](#ds-binary-search-tree)
@@ -829,6 +828,67 @@ A deep copying means that value of the new variable is disconnected from the ori
 
    // using JSON Deep Copy
    let p3 = JSON.parse(JSON.stringify(person));
+```
+**[⬆ Back to Top](#table-of-contents)**
+
+30. ### Output Questions
+
+```jsx harmony
+   for (var i = 0; i < 10; i++) {
+     setTimeout(() => {
+      console.log(i)
+     })
+   }
+   // 10 times 10, let to rectify
+   
+   var a = 5;
+   var main = function() {
+     var a = 10;
+     setTimeout(() => {
+       a = 30;
+     });
+     var side = function() {
+       console.log(a);
+     }
+     return side;
+   }
+   var side = main();
+   a = 20;
+   side();
+   //10
+
+   setTimeout(() => {
+     console.log(5);
+   }, 10);
+   for (var i = 0; i < 1000; i++) {
+     console.log(i)
+   }
+   // 0 to 999 then 5
+   
+   for (var i = 0; i < 10; i++) {
+     function log(i) {
+       console.log(i);
+     }
+     setTimeout(log.bind(null, i))
+   }
+   // 0 to 9
+   
+   var obj = {
+     value: 10,
+     a: function() {
+       console.log(this.value);
+       var b = function() {
+         console.log(this.value);
+       }
+       b();
+     }
+   }
+   obj.a();
+   // 10, undefined
+   
+   String.prototype.alternate = function() {return 'HloWrd'};
+   console.log('Hello World!'.alternate()); // HloWrd
+
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
