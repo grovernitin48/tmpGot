@@ -33,7 +33,8 @@
 |29 | [Object Questions:](#object-questions) |
 |30 | [Output Questions](#output-questions) |
 |31 | [Code FizzBuzz](#code-fizz-buzz) |
-|31 | [Code Minesweeper](#code-minesweeper) |
+|32 | [Code Minesweeper](#code-minesweeper) |
+|33 | [Code LikedList](#code-linkedlist) |
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
@@ -989,7 +990,7 @@ A deep copying means that value of the new variable is disconnected from the ori
 ```
 **[⬆ Back to Top](#table-of-contents)**
 
-32. ### Code Linked List
+33. ### Code Linked List
 
 ```jsx harmony
       // Construct Single Node
