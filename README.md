@@ -41,6 +41,7 @@
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
 |38 | [React: Adding input to array](#react-adding-input-to-array)
+|39 | [React: Learning](#react-learning)
 
 1. ### Array Questions: Unique elements
 
@@ -810,6 +811,26 @@ Render => DOM+CSSOM Multple trees: RenderObjects, RenderStyles, RenderLayers, Li
 
 **[⬆ Back to Top](#table-of-contents)**
 
+29. ### Object Questions
+A deep copying means that value of the new variable is disconnected from the original variable while a shallow copy means that some values are still connected to the original variable.
+
+```jsx harmony
+   const person = {
+       firstName: 'John',
+       lastName: 'Doe'
+   };
+
+   // using spread ... Shallow
+   let p1 = {...person};
+
+   // using  Object.assign() method Shaloow
+   let p2 = Object.assign({}, person);
+
+   // using JSON Deep Copy
+   let p3 = JSON.parse(JSON.stringify(person));
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 35. ### React Calculator
 ```jsx harmony
       import React, { useState, useEffect } from "react";
@@ -1004,4 +1025,30 @@ Render => DOM+CSSOM Multple trees: RenderObjects, RenderStyles, RenderLayers, Li
      );
    }
 ```
+**[⬆ Back to Top](#table-of-contents)**
+
+
+38. ### React Learning
+
+The <Provider> component makes the Redux store available to any nested components that need to access the Redux store.Since any React component in a React Redux app can be connected to the store, most applications will render a <Provider> at the top level, with the entire app’s component tree inside of it.The Hooks and connect APIs can then access the provided store instance via React's Context mechanism.
+
+   ReactDOM is a package that provides DOM specific methods that can be used at the top level of a web app to enable an efficient way of managing DOM elements of the web page. ReactDOM provides the developers with an API containing methods like render(), findDOMNode(), unmountComponentAtNode(), hydrate(), createPortal()
+Render a React element into the DOM in the supplied container and return a reference to the component (or returns null for stateless components). If the React element was previously rendered into container, this will perform an update on it and only mutate the DOM as necessary to reflect the latest React element using diffing algorithm
+
+   createStore : Creates a Redux store that holds the complete state tree of your app. There should only be a single store in your app.Returns(Store): An object that holds the complete state of your app. The only way to change its state is by dispatching actions.
+reducer (Function): A reducing function that returns the next state tree, given the current state tree and an action to handle.
+To apply multiple store enhancers, you may use compose().
+
+   Redux Thunk middleware allows you to write action creators that return a function instead of an action. The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. The inner function receives the store methods dispatch and getState as parameters.
+predicate, // if specified this function will be called before each action is processed with this middleware.
+diff = false: Boolean, // (alpha) show diff between states?
+ logger = console: LoggerObject, // implementation of the `console` API.
+The CSS box-sizing property allows us to include the padding and border in an element's total width and height. Default value is content-box
+
+   <BrowserRouter>A <Router> that uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL.
+Connect : The connect() function connects a React component to a Redux store.It provides its connected component with the pieces of the data it needs from the store, and the functions it can use to dispatch actions to the store.It does not modify the component class passed to it; instead, it returns a new, connected component class that wraps the component you passed in.
+
+      useCallback and useMemo both expect a function and an array of dependencies. The difference is that useCallback returns its function when the dependencies change while useMemo calls its function and returns the result. useCallback(fn, deps) is equivalent to useMemo(() => fn, deps).
+
+
 **[⬆ Back to Top](#table-of-contents)**
