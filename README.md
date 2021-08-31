@@ -36,6 +36,7 @@
 |32 | [Code Minesweeper](#code-minesweeper) |
 |33 | [Code Liked List](#code-linked-list) |
 |34 | [Code Longest Palindrome](#code-longest-palindrome) |
+|34 | [Code Reverse String Number](#code-reverse-string-number) |
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
@@ -1210,7 +1211,37 @@ longestPalStrOp("forgeeksskeegfor");
 
 ```
 **[⬆ Back to Top](#table-of-contents)**
-      
+
+34. ### Code Reverse String Number 
+
+```jsx harmony
+      function customRevStr(str){
+        var r = "";
+        for(var i = str.length - 1; i >= 0; i--){
+          r += str.charAt(i);
+        }
+        return r;
+      }
+      console.log(customRevStr("jhbh"));
+
+      function customRevNum(number) {
+       var reversed = 0;
+      //  var exponent = number.indexOf('.');
+      //  if (exponent !== -1) {number *= Math.pow(10, number.length - exponent - 1);}
+       while (number != 0) {
+        reversed *= 10;
+        reversed += number % 10;
+        number -= number % 10;
+        number /= 10;
+       }
+      //  if (exponent !== -1) {reversed /= Math.pow(10, exponent);}
+       return reversed;
+      }
+      console.log(customRevNum(12345));
+
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 35. ### React Calculator
 ```jsx harmony
       import React, { useState, useEffect } from "react";
