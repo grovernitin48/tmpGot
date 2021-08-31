@@ -34,7 +34,7 @@
 |30 | [Output Questions](#output-questions) |
 |31 | [Code FizzBuzz](#code-fizz-buzz) |
 |32 | [Code Minesweeper](#code-minesweeper) |
-|33 | [Code LikedList](#code-linkedlist) |
+|33 | [Code Liked List](#code-linked-list) |
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
