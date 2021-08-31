@@ -9,7 +9,6 @@
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
 |5  | [Async await/ Fetch data from API](#async-await) |
 |6  | [Async defer](#async-defer) |
-|7  | [Callbacks](#callbacks) |
 |7  | [Closures](#closures) |
 |8  | [Currying](#currying) |
 |9  | [Call, apply, bind](#call-apply-bind) |
@@ -33,9 +32,6 @@
 |28 | [Web Works](#web-works) |
 |29 | [Object Questions:](#object-questions) |
 |30 | [Output Questions](#output-questions) |
-|32 | [Specific Questions: Minimum number of platforms to take all trains](#specific-questions-minimum-number-of-platforms-to-take-all-trains) |
-|33 | [Specific Questions: Minesweeper game](#specific-questions-minesweeper-game) |
-|34 | [DS Binary Search Tree](#ds-binary-search-tree)
 |35 | [React: Calculator](#react-calculator)
 |36 | [React: Ratings Star](#react-ratings-star)
 |37 | [React: Input Search Filter](#react-input-search-filter)
