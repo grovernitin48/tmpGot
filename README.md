@@ -274,16 +274,18 @@ DEFER: SCRIPT fetch from the server with HTML parsing(asynchronously), but only 
    <div class="center">
      <p>centered.</p>
    </div>
+   //POSITION
    static	Default value. Elements render in order, as they appear in the document flow
    absolute	The element is positioned relative to its first positioned (not static) ancestor element
    fixed	The element is positioned relative to the browser window
    relative	The element is positioned relative to its normal position, so "left:20px" adds 20 pixels to the element's LEFT position
    sticky	The element is positioned based on the user's scroll position
+   //DISPLAY
    inline	Displays an element as an inline element (like <span>). Any height and width properties will have no effect
    block	Displays an element as a block element (like <p>). It starts on a new line, and takes up the whole width
    flex	Displays an element as a block-level flex container
    grid	Displays an element as a block-level grid container
-   inline-block	Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width values
+   inline-block	Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width    values
    inline-flex	Displays an element as an inline-level flex container
    inline-grid	Displays an element as an inline-level grid container
    inline-table	The element is displayed as an inline-level table
