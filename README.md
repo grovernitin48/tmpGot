@@ -9,6 +9,7 @@
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
 |5  | [Async Await Promise](#async-await-promise) |
 |6  | [Async defer](#async-defer) |
+|6  | [CSS](#css) |
 |7  | [Closures](#closures) |
 |8  | [Currying](#currying) |
 |9  | [Call, apply, bind](#call-apply-bind) |
@@ -246,6 +247,50 @@ DEFER: SCRIPT fetch from the server with HTML parsing(asynchronously), but only 
 
 **[⬆ Back to Top](#table-of-contents)**
 
+
+6. ### CSS
+```jsx harmony
+   css specificity, Inline -> ID -> Classes, attribute, pseudo  -> elements, pseudo
+   //Align item in middle,  
+   .center {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 200px;
+     border: 1px solid black;
+   }
+   .center { 
+     height: 200px;
+     position: relative;
+     border: 1px solid black; 
+   }
+   .center p {
+     margin: 0;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+   }
+   <div class="center">
+     <p>centered.</p>
+   </div>
+   static	Default value. Elements render in order, as they appear in the document flow
+   absolute	The element is positioned relative to its first positioned (not static) ancestor element
+   fixed	The element is positioned relative to the browser window
+   relative	The element is positioned relative to its normal position, so "left:20px" adds 20 pixels to the element's LEFT position
+   sticky	The element is positioned based on the user's scroll position
+   inline	Displays an element as an inline element (like <span>). Any height and width properties will have no effect
+   block	Displays an element as a block element (like <p>). It starts on a new line, and takes up the whole width
+   flex	Displays an element as a block-level flex container
+   grid	Displays an element as a block-level grid container
+   inline-block	Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width values
+   inline-flex	Displays an element as an inline-level flex container
+   inline-grid	Displays an element as an inline-level grid container
+   inline-table	The element is displayed as an inline-level table
+   list-item	Let the element behave like a <li> element
+   table	Let the element behave like a <table> element
+
+**[⬆ Back to Top](#table-of-contents)**
 
 7. ### Closures
 
