@@ -92,6 +92,7 @@
 2. ### Array Questions: Nested array to single array
 
 ```jsx harmony
+    //O(N log N)
     var arr = [1, 3, 4, 65, [3, 5, 6, 9, [354, 5, 43, 54, 54, 6, [232, 323, 323]]]];
     var result = [];
     function getSingleArray(inArr) {
@@ -103,9 +104,26 @@
         }
       }
     }
-
     getSingleArray(arr);
     console.log(result); 
+
+   //O(n) solution
+   function flatten_linear(items) {
+     const flat = [];
+     // do not call the whole function recursively
+     // that's this mule function's job
+     function inner(input) {
+        if (Array.isArray(input))
+           input.forEach(inner);
+        else
+           flat.push(input);
+     }
+     // call on the "root" array
+     inner(items);  
+     return flat;
+   }
+   console.log(flatten_linear(arr)); 
+
  ```
 **[⬆ Back to Top](#table-of-contents)**
 
