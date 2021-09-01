@@ -52,6 +52,20 @@
 
 ```jsx harmony
    const a = [1,1,2,3,3,4,5,6,6]
+   // O(n2) complexity
+     function  printDistinct(arr, n){
+          for (let i=0; i<n; i++){
+              var j; // Check if the picked element is already printed
+              for (j=0; j<i; j++)
+                 if (arr[i] == arr[j])
+                     break;
+              // If not printed earlier, then print it
+              if (i == j)
+                console.log(arr[i] + " "); }
+          }
+      arr = new Array(6, 10, 5, 4, 9, 120, 4, 6, 10);
+      n = arr.length;
+      printDistinct(arr, n);
    
    // 1. Basic Way
    const filterUnique = (a) => {
