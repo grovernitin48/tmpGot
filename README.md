@@ -7,7 +7,7 @@
 |2  | [Array Questions: Nested array to single array](#array-questions-nested-array-to-single-array) |
 |3  | [Array Questions: Anagrams in a array of strings](#array-questions-anagrams-in-a-array-of-strings) |
 |4  | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
-|5  | [Async await/ Fetch data from API](#async-await) |
+|5  | [Async Await Promise](#async-await-promise) |
 |6  | [Async defer](#async-defer) |
 |7  | [Closures](#closures) |
 |8  | [Currying](#currying) |
@@ -192,7 +192,7 @@
 
 **[⬆ Back to Top](#table-of-contents)**
 
-5. ### Async await Promises
+5. ### Async Await Promise
 
 The async and await keywords enable asynchronous, promise-based behavior to be written in a cleaner style, avoiding the need to explicitly configure promise chains.
  ```jsx harmony
