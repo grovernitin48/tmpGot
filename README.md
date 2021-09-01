@@ -291,11 +291,11 @@ DEFER: SCRIPT fetch from the server with HTML parsing(asynchronously), but only 
    inline-table	The element is displayed as an inline-level table
    list-item	Let the element behave like a <li> element
    table	Let the element behave like a <table> element
-
+```
 **[⬆ Back to Top](#table-of-contents)**
 
-7. ### Closures
 
+7. ### Closures
 Basically means Inner function can access variables and parameters of an outer function. Useful to create private variables or functions.
 
 ```jsx harmony
