@@ -49,6 +49,34 @@
 |38 | [React: Useref Usememo Usecallback](#react-useref-usememo-usecallback)
 |39 | [React: Learning](#react-learning)
 
+
+Modules:
+JS modules are the most prevalently used design patterns for keeping particular pieces of code independent of other components. 
+basically Like classes, encapsulation - protecting states and behaviors from being accessed from other classes.
+Modules should be (IIFE) to allow for private scope
+Revealing Module Pattern. The purpose is to maintain encapsulation and reveal certain variables and methods returned in an object literal.
+
+* ES6 modules are pre-parsed in order to resolve further imports before code is executed.
+* CommonJS modules load dependencies on demand while executing the code.
+* knockout js
+
+
+Observer:
+ if an object is modified it broadcasts to dependent objects that a change has occurred. Example of MVC,
+The view updates when the model changes.
+subject, observer, and concrete objects. The subject has references to concrete observers to notify changes. Observer object is an abstract class that allows for the concrete observers to implements the notify method.
+disadvantage is a drop in performance as the number of observers increased. famous observers is watchers
+we can watch variables, functions, and objects. The $$digest cycle runs and notifies each of the watchers with the new values whenever a scope object is modified.
+In AngularJS, a subscriber ‘subscribes’ to an event using $on('event’, callback), and a publisher 'publishes’ an event using $emit('event’, args) or $broadcast('event’, args).
+
+Prototype
+The Prototype design pattern relies on JS prototype inheritence. The prototype model is used mainly for creating objects in performance-intensive situations.
+
+SINGLETON
+A Singleton only allows for a single instantiation, but many instances of the same object. The Singleton restricts clients from creating multiple objects, after the first object created, it will return instances of itself.
+One example is using an office printer. If there are ten people in an office, and they all use one printer, ten computers share one printer (instance). By sharing one printer, they share the same resources.
+
+
 1. ### Array Questions: Unique elements
 
 ```jsx harmony
