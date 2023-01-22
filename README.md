@@ -1917,7 +1917,7 @@ Connect : The connect() function connects a React component to a Redux store.It 
 
 40. ### React Form with Validation
 
-  ```
+ ```jsx harmony
   import React, { useEffect, useState } from "react";
 
   function RegistrationView() {
