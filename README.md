@@ -856,7 +856,7 @@ All declarations (function, var, let, const and class) are hoisted in JavaScript
     Array.prototype.customReduce = function(callback, initial) {
       let acc = initial
       for(let i=0; i<this.length; i++){
-         acc = callback(acc,this[i], i, this)
+         acc = acc ? callback(acc,this[i], i, this) : this[i];
       } 
       return acc;
     }
