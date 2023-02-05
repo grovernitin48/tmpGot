@@ -1,0 +1,62 @@
+<div id="countdown">
+  <h1>Coming Soon!</h1>
+  <ul>
+    <li><span id="days"></span>Days</li>
+    <li><span id="hours"></span>Hours</li>
+    <li><span id="minutes"></span>Minutes</li>
+    <li><span id="seconds"></span>Seconds</li>
+  </ul>
+</div>
+
+<style>
+  body {
+    background-color: grey;
+    color: #fff;
+    text-align: center;
+  }
+  #countdown ul {
+    display: flex;
+    gap: 5%;
+  }
+  #countdown ul li {
+    flex: 25%;
+    padding: 5%;
+    list-style: none;
+    background: #001f2f;
+  }
+  #countdown ul li span {
+    display: block;
+  }
+</style>
+
+<script>
+  const sec = 1000,
+    min = sec * 60,
+    hour = min * 60,
+    day = hour * 24,
+    end = new Date("Jul 05, 2023 09:00:00").getTime();
+
+  const int = setInterval(() => {
+    const current = new Date().getTime();
+    const remaining = end - current;
+    document.getElementById("days").innerText = Math.floor(remaining / day);
+    document.getElementById("hours").innerText = Math.floor(
+      (remaining % day) / hour
+    );
+    document.getElementById("minutes").innerText = Math.floor(
+      (remaining % hour) / min
+    );
+    document.getElementById("seconds").innerText = Math.floor(
+      (remaining % min) / sec
+    );
+
+    if (remaining < 0) {
+      document.querySelector("h1").innerText = "We Have Arrived!";
+      const digit = document.querySelectorAll("span");
+      digit.forEach((digit) => {
+        digit.innerText = "0";
+      });
+      clearInterval(int);
+    }
+  }, 1000);
+</script>
