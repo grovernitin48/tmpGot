@@ -46,6 +46,7 @@
 |38 | [React: Useref Usememo Usecallback](#react-useref-usememo-usecallback)
 |39 | [React: Learning](#react-learning)
 |40 | [React Form with Validation](#react-form-with-validation) |
+|41 | [Patterns](src/Patterns.js) |
 
 
 Modules:
