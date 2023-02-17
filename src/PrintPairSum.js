@@ -50,7 +50,7 @@ function printpairs4(arr, sum) {
 }
 printpairs4(arr, sum);
 
-// IF SOME = 0, to same -ve +ve elements
+// IF sum = 0, to same -ve +ve elements
 function printPair3(arr) {
     let pair = {};
     for (let i = 0; i < arr.length; i++) {
@@ -66,3 +66,21 @@ function printPair3(arr) {
 }
 
 console.log(printPair3(arr));
+
+// PRINT K numbers whose sum equat to total
+let resultArr = [];
+const arrCombination = (arr, sum, temp = [], sumLocal = 0) => {
+    if (sumLocal < sum) {
+        // looping all elements of array and calling the function again with slicing the main array dynamically 
+        arr.forEach((num, i) =>
+            arrCombination(arr.slice(i + 1), sum, temp.concat([num]), sumLocal + num));
+    }
+
+    else if (sumLocal == sum) {
+        resultArr.push([temp]);
+    }
+
+}
+arrCombination([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 6)
+
+console.log(resultArr);

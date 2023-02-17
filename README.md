@@ -1490,33 +1490,20 @@ console.log(findPlatform(arr, dep, n));
 
 ```jsx harmony
 //It requires two traversals of array.
-function sort012(arr, n) {
-  let count0 = 0,
-    count1 = 0;
-  let count2 = 0;
-  for (let i = 0; i < n; i++) {
-    if (arr[i] == 0) {
-      count0++;
+function sort012(arr, N)
+    {
+        let count0=0,count1=0,count2=0;
+        for(let i=0; i<N; i++){
+            if(arr[i]===0) count0++;
+            if(arr[i]===1) count1++;
+            if(arr[i]===2) count2++;
+        }
+        for(let i=0; i<count0; i++) arr[i]=0;
+        for(let i=count0; i<count0+count1; i++) arr[i]=1;
+        for(let i=count0+count1; i<N; i++) arr[i]=2;
+        
+        return arr;
     }
-    if (arr[i] == 1) {
-      count1++;
-    }
-    if (arr[i] == 2) {
-      count2++;
-    }
-  }
-  // Putting the 0,1,2 in the array
-  for (let i = 0; i < count0; i++) {
-    arr[i] = 0;
-  }
-  for (let i = count0; i < count0 + count1; i++) {
-    arr[i] = 1;
-  }
-  for (let i = count0 + count1; i < n; i++) {
-    arr[i] = 2;
-  }
-  console.log(arr);
-}
 let arr = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1];
 let n = 12;
 sort012(arr, n);
