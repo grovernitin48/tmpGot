@@ -84,3 +84,32 @@ function set(obj, path, value) {
 }
 
 console.log(set(a,'c.d.e.unit','LB'))
+
+
+/* Given a string as input, Return a string without duplicates in the same order of occurance appended with positions of first occurance of duplicated characters
+
+Example:
+Input  : Banananananananananananananana
+Output : Ban12
+*/
+
+const filterUnique = (str)=>{
+  let obj = {};
+  let dup = [];
+  
+  for(let char of str){
+    if(obj[char]){
+      obj[char] = obj[char]+1;
+      dup.unshift(char);
+    } else {
+      obj[char] = 1;
+    }
+  }
+  
+  const idx = [...new Set(dup)].map(el => str.indexOf(el)).join('');
+  
+  return Object.keys(obj).join('')+idx;
+  
+}
+
+console.log(filterUnique('Banananananananananananananana'));
