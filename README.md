@@ -446,7 +446,7 @@ It is mostly used in search bar
 ```jsx harmony
 let counter = 0;
 const getData = () => {
-  console.log("Invoked", counter++);
+  console.log("Invoked", ++counter);
 };
 
 const debounce = (fn, delay) => {
@@ -461,7 +461,10 @@ const debounce = (fn, delay) => {
   };
 };
 
-const debounceFunction = debounce(getData, 300);
+debounce(getData, 300)();
+debounce(getData, 900)();
+debounce(getData, 1200)();
+debounce(getData, 1500)();
 ```
 
 **[⬆ Back to Top](#table-of-contents)**
