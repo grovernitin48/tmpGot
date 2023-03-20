@@ -94,3 +94,27 @@ console.log(mergeSort(list)) // [ 1, 2, 2, 3, 3, 3, 5, 6, 7, 8 ]
 
 
 // QUICK
+
+// SORT WITH FREQUENCY OF NUMBER
+const frequencySort = function (arr) {
+    let map = {};
+    for (let item of arr) {
+        map[item] = map[item] + 1 || 1;
+    }
+
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
+            let temp = 0;
+            if (map[arr[j]] === map[arr[j + 1]]) {
+                temp = arr[j] - arr[j + 1]
+            } else {
+                temp = map[arr[j]] - map[arr[j + 1]]
+            }
+            if (temp > 0) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+        }
+    }
+    return arr;
+};
+console.log(frequencySort([2, 1, 9, 1, 2, 5, 1, 6, 1]));  //[5, 6, 9, 2, 2, 1, 1, 1, 1]
