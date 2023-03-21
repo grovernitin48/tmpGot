@@ -1,3 +1,30 @@
+import React, { useState, useEffect } from "react";
+
+export default function App() {
+  const val = isNaN(localStorage.getItem('count'))
+    ? 0 : localStorage.getItem('count');
+  const [count, setCount] = useState(parseInt(val));
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('count', JSON.stringify(count));
+    if (count === 0) setDisabled(true);
+    else setDisabled(false);
+  }, [count]);
+
+  return (
+    <div className="App">
+      <button
+        disabled={disabled}
+        onClick={() => setCount(count - 1)}>
+        -
+      </button>
+      {count}
+      <button onClick={() => setCount(count + 1)}>+</button>
+    </div>
+  );
+}
+
 import { useState, useEffect } from "react";
 import "./styles.css";
 
