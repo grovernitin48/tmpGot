@@ -316,6 +316,18 @@ DEFER: SCRIPT fetch from the server with HTML parsing(asynchronously), but only 
    inline-table	The element is displayed as an inline-level table
    list-item	Let the element behave like a <li> element
    table	Let the element behave like a <table> element
+   
+   .flag {
+  height: 300px;
+  width: 600px;
+  border: 1px solid black;
+  background: linear-gradient(180deg,
+    green,
+    green 33.33333%,
+    #fff 33.33333%,
+    #fff 66.66667%,
+    blue 66.66667%,
+    blue)
 ```
 
 **[⬆ Back to Top](#table-of-contents)**
