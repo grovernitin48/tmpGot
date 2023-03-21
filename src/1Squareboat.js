@@ -166,6 +166,9 @@ The absence of the DOCTYPE or its incorrect usage will force the browser to swit
  to quirks mode.It means that the browser will do its best to layout the page
   that is considered to be old or created against web standards.
 
+React Snap - After build create stating pages with meta tags
+Helmet
+Server Side rendering using Next or hybrid
 
 < picture >
     <source media="(min-width:650px)" srcset="img_pink_flowers.jpg">
