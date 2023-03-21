@@ -25,6 +25,41 @@ export default function App() {
   );
 }
 
+
+import React, { Component } from "react";
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "John",
+      countA: 0,
+    };
+  }
+
+  handleClick = () => {
+    let newCount = this.state.countA + 1;
+    this.setState({
+      countA: newCount
+    });
+  };
+
+  render() {
+    return (
+        <div>
+          <h1>{this.state.name}</h1>
+          <p>age {this.state.countA}</p>
+          <button onClick={this.handleClick}>Increase Age</button>
+        </div>
+    );
+  }
+}
+
+export default App;
+
+
+
+
+
 import { useState, useEffect } from "react";
 import "./styles.css";
 
