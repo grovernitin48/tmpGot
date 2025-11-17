@@ -80,104 +80,94 @@ One example is using an office printer. If there are ten people in an office, an
 ```jsx harmony
 const arr = [6, 10, 5, 4, 9, 120, 4, 6, 10, 1, 1, 2, 3, 5];
 
-// --------------------------------------------------
-// Unique - O(n*n) using FILTER and INDEXOF
-// Explanation:
-// For each element, filter() calls indexOf() which scans from start to find the first occurrence.
-// If the first occurrence index === current index, this is the first time we see that value.
+/* --------------------------------------------------
+   UNIQUE – FILTER + INDEXOF
+   Time: O(n²) → indexOf is O(n) and runs for every element
+   Space: O(k) → only unique items stored
+   - filter iterates n times
+   - indexOf scans from start up to n per element
+   - preserves first-occurrence order
+*/
 console.log(
-  arr.filter((el, ind, dup) =>
-    // keep element only when its first occurrence is at current index
-    dup.indexOf(el) === ind
-  )
+  arr.filter((el, ind, dup) => dup.indexOf(el) === ind)
 );
-// Time: O(n^2) (indexOf is O(n) per element). Space: O(k) for result (k = unique count).
 
-// --------------------------------------------------
-// Unique - O(n*n) using nested loops (classic approach)
-// Explanation:
-// For each arr[i], scan all previous items arr[0..i-1] to check if it appeared before.
-// If not found among previous items, push it to unique array.
+/* --------------------------------------------------
+   UNIQUE – NESTED LOOPS (classic)
+   Time: O(n²) → for each element you scan all previous elements
+   Space: O(k) → result stores only unique values
+   - outer loop runs n times
+   - inner loop may run up to i times → total ~ n²/2
+   - preserves first-occurrence order
+*/
 function printDistinct(arr) {
   const unique = [];
   for (let i = 0; i < arr.length; i++) {
-    var j;
-    // check every earlier element for equality
-    for (j = 0; j < i; j++) if (arr[i] == arr[j]) break;
-    // if j reached i, no duplicate was found, so it's first occurrence
-    if (i == j) unique.push(arr[i]);
+    let j;
+    for (j = 0; j < i; j++) if (arr[i] === arr[j]) break;
+    if (i === j) unique.push(arr[i]);
   }
   return unique;
 }
-console.log(printDistinct(arr));
-// Time: O(n^2). Space: O(k).
 
-// --------------------------------------------------
-// Unique - O(n) Using Map (preserves first-occurrence order)
-// Explanation:
-// Map keeps insertion order. We set the key for each unseen value.
-// At the end, Array.from(map.keys()) returns unique items in order of first appearance.
+/* --------------------------------------------------
+   UNIQUE – MAP
+   Time: O(n) average → Map has O(1) average insertion/lookup
+   Space: O(n) → Map stores each unique value
+   - iterate through array once
+   - only first occurrence of each value added
+   - preserves insertion order naturally
+*/
 function uniqueMap(arr) {
   const m = new Map();
   for (const v of arr) {
-    // only set when we haven't seen the value
     if (!m.has(v)) m.set(v, true);
   }
-  // map.keys() preserves the order we inserted keys -> first-seen order
   return Array.from(m.keys());
 }
-console.log(uniqueMap(arr));
-// Time: O(n) average. Space: O(n).
 
-// --------------------------------------------------
-// Unique - O(n) Using Set (recommended, concise)
-// Explanation:
-// Set stores unique values and preserves insertion order for primitive values.
-// Spread into array to get unique values in first-seen order.
+/* --------------------------------------------------
+   UNIQUE – SET (recommended)
+   Time: O(n) average → Set insertions/checks are O(1)
+   Space: O(n) → Set stores each unique value
+   - Set automatically removes duplicates
+   - maintains insertion order
+*/
 console.log([...new Set(arr)]);
-// Time: O(n) average. Space: O(n).
-// Recommended for most simple use-cases with primitives (numbers/strings).
 
-// --------------------------------------------------
-// Unique - O(n) Using plain OBJECT (preserve order manually)
-// Explanation:
-// Using an object as a 'seen' map and pushing into out[] only on first-seen.
-// Note: using `in` or hasOwnProperty ensures we only push once and preserve original order.
+/* --------------------------------------------------
+   UNIQUE – OBJECT LOOKUP
+   Time: O(n) average → object property check is O(1)
+   Space: O(n) → one property per unique key
+   - plain object works like a hashmap
+   - preserves first occurrence order by pushing only on first encounter
+   - caution: keys converted to strings internally
+*/
 function uniqueObj(arr) {
-  const seen = {}; // plain object as boolean lookup
+  const seen = {};
   const out = [];
   for (const v of arr) {
-    // `in` checks if object already has this key (keys are coerced to strings)
     if (!(v in seen)) {
       seen[v] = true;
-      out.push(v); // preserve the order of first occurrence by pushing here
+      out.push(v);
     }
   }
   return out;
 }
-console.log(uniqueObj(arr));
-// Time: O(n) average. Space: O(n).
-// CAVEAT: object keys are strings; if values are non-primitive or special (NaN, -0, objects) behavior differs.
 
-// --------------------------------------------------
-// Ascending with Unique - O(n) Using OBJECT (last-writer-wins, results come back sorted)
-// Explanation:
-// This version assigns obj[value] = i for every occurrence so last occurrence index is stored.
-// Object.keys(obj) returns keys (as strings). For integer-like keys JS enumerates them in numeric ascending order.
-// That's why you get ascending order instead of original insertion order.
+/* --------------------------------------------------
+   UNIQUE + SORTED (via Object Keys)
+   Time: O(n) → one pass to fill object + O(n) to extract keys
+   Space: O(n) → one entry per unique number
+   - assigning obj[value] overwrites previous entries
+   - Object.keys returns numeric-like keys in ascending order
+   - result is sorted, NOT in insertion order
+*/
 const filterUnique = (arr) => {
   const obj = {};
-  for (let i = 0; i < arr.length; i++) {
-    // overwrite previous entry; final value is index of last occurrence
-    obj[arr[i]] = i;
-  }
-  // Object.keys returns string keys; integer-like keys are enumerated in ascending numeric order
-  return Object.keys(obj);
+  for (let i = 0; i < arr.length; i++) obj[arr[i]] = i;
+  return Object.keys(obj).map(Number);
 };
-console.log(filterUnique(arr).map((val) => parseInt(val, 10)));
-// Time: O(n). Space: O(n).
-// GOTCHA: Object.keys returns strings and integer keys are ordered numerically. Use Map/Set to preserve original order.
-
 ```
 
 **[⬆ Back to Top](#table-of-contents)**
