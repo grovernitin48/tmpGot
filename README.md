@@ -185,35 +185,83 @@ console.log(filterUnique(arr).map((val) => parseInt(val, 10)));
 2. ### Array Questions: Nested array to single array
 
 ```jsx harmony
-//O(N log N)
-var arr = [1, 3, 4, 65, [3, 5, 6, 9, [354, 5, 43, 54, 54, 6, [232, 323, 323]]]];
-var result = [];
-function getSingleArray(inArr) {
-  for (var i = 0; i < inArr.length; i++) {
-    if (typeof inArr[i] == "object") {
-      getSingleArray(inArr[i]); // Calling Recursively
+const arr = [1, 3, 4, 65, [3, 5, 6, 9, [354, 5, 43, 54, 54, 6, [232, 323, 323]]]];
+
+/* 1) flattenRecursive
+   - Logic: DFS recursion, push primitives to result
+   - Time: O(n) where n = total number of primitive items
+   - Space: O(n) for result + O(d) recursion stack (d = max nesting depth)
+   - Note: doesn't mutate input
+*/
+function flattenRecursive(input) {
+  const result = [];
+  function recurse(item) {
+    if (Array.isArray(item)) {
+      for (let i = 0; i < item.length; i++) {
+        recurse(item[i]);
+      }
     } else {
-      result.push(inArr[i]);
+      result.push(item);
     }
   }
+  recurse(input);
+  return result;
 }
-getSingleArray(arr);
-console.log(result);
+console.log(flattenRecursive(arr));
 
-//O(n) solution
-function flatten_linear(items) {
-  const flat = [];
-  // do not call the whole function recursively
-  // that's this mule function's job
-  function inner(input) {
-    if (Array.isArray(input)) input.forEach(inner);
-    else flat.push(input);
+/* 2) flattenIterative (stack-based)
+   - Logic: use an explicit stack to simulate DFS, push children in reverse order to preserve original order
+   - Time: O(n)
+   - Space: O(n) for output + O(n) worst-case for stack (usually O(d))
+   - Advantage: avoids call-stack overflow for very deep nesting
+*/
+Array.prototype.flattenIterative = function() {
+  const result = [];
+  const stack = [this]; // shallow copy top-level items
+  while (stack.length) {
+    const val = stack.pop();
+    if (Array.isArray(val)) {
+      // push in reverse so the left-most items are processed first
+      for (let i = val.length - 1; i >= 0; i--) {
+        stack.push(val[i]);
+      }
+    } else {
+      result.push(val);
+    }
   }
-  // call on the "root" array
-  inner(items);
-  return flat;
+  return result;
 }
-console.log(flatten_linear(arr));
+console.log(arr.flattenIterative());
+
+
+/* 3) flattenReduceConcat
+   - Logic: recursive reduce + concat; elegant but concat copies arrays repeatedly
+   - Time: O(n^2) worst-case due to repeated array copying by concat
+   - Space: O(n)
+   - Note: fine for small arrays, avoid for large/deep data
+*/
+function flattenReduceConcat(input) {
+  if (!Array.isArray(input)) return [input];
+  return input.reduce((acc, val) => {
+    if (Array.isArray(val)) {
+      return acc.concat(flattenReduceConcat(val)); // recursive concat
+    } else {
+      return acc.concat(val); // concat copies acc each time
+    }
+  }, []);
+}
+
+/* 4) flattenUsingFlat (ES2019)
+   - Logic: uses built-in Array.prototype.flat
+   - Time: O(n) (engine-optimized)
+   - Space: O(n)
+   - Note: use if environment supports it (Node >= 11, modern browsers)
+*/
+function flattenUsingFlat(input) {
+  // Ensure input is an array and use Infinity to fully flatten
+  if (!Array.isArray(input)) return [input];
+  return input.flat(Infinity);
+}
 ```
 
 **[⬆ Back to Top](#table-of-contents)**
