@@ -416,7 +416,7 @@ const allAnagramsBest = (arr) => {
 
 **[⬆ Back to Top](#table-of-contents)**
 
-5. ### Array Questions: Return 2 indices from an array, sum of their elements is= to given number?
+4. ### Array Questions: Return 2 indices from an array, sum of their elements is= to given number?
 
 ```jsx harmony
 let A = [1, 4, 11, 5, 45, 6, 10, 8, 8, 4, 4];
