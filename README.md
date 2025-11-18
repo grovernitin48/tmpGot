@@ -260,43 +260,158 @@ function flattenUsingFlat(input) {
 
 ```jsx harmony
 const arr = ["monk", "konm", "nkom", "bbc", "cbb", "dell", "ledl", "llde"];
-let anagram = {};
+// expected result: [["monk","konm","nkom"], ["bbc","cbb"], ["dell","ledl","llde"]]
 
-for (let i = 0; i < arr.length; i++) {
-  const word = arr[i];
-  const sortedWord = word.split("").sort().join("");
-  let tempArray = [];
-  if (anagram[sortedWord]) {
-    tempArray =
-      anagram[sortedWord].length == 1
-        ? anagram[sortedWord]
-        : [...anagram[sortedWord]];
-    tempArray.push(word);
-    anagram[sortedWord] = tempArray;
-  } else {
-    anagram[sortedWord] = [word];
+/* ============================================================
+   GROUP ANAGRAMS — using sorted-string key
+   Time: O(n * k log k)   // sort each word of length k
+   Space: O(n * k)        // storing keys + groups
+   Reason: simple, robust. Sorting gives a canonical key per multiset.
+   Notes: works for any charset; use Map if group order matters.
+*/
+function groupAnagramsSort(arr) {
+  const map = new Map(); // sortedKey -> [words]
+  for (const word of arr) {
+    // create canonical key by sorting chars
+    const sortedKey = word.split("").sort().join(""); // O(k log k)
+    if (!map.has(sortedKey)) map.set(sortedKey, []);
+    map.get(sortedKey).push(word);
   }
+  return Array.from(map.values()); // groups as arrays
 }
-console.log(Object.values(anagram));
 
-//ANOTHER QUESTION return an array with all the anagrams grouped together
-var arr = ["cat", "dog", "tac", "god", "act"];
+/* ============================================================
+   GROUP ANAGRAMS — optimized using character-count signature
+   Time: O(n * k)         // count chars for each word
+   Space: O(n * k)        // storing keys + groups (key length ~ alphabet or k)
+   Reason: avoid sorting by using fixed-size count signature.
+   Notes: best when alphabet size is small/fixed (e.g., lowercase a-z).
+          For general unicode, either normalize or fall back to sorting.
+*/
+function groupAnagramsCount(arr) {
+  const map = new Map();
+  for (const word of arr) {
+    // try fast path for lowercase 'a'..'z'
+    const count = new Array(26).fill(0);
+    let fallback = false;
 
-var allAnagrams = function (arr) {
-  var anagrams = {};
+    for (let i = 0; i < word.length; i++) {
+      const ch = word.charCodeAt(i) - 97; // 'a' => 0
+      if (ch >= 0 && ch < 26) {
+        count[ch]++;
+      } else {
+        // non a-z char found -> fallback to sorted-key grouping
+        fallback = true;
+        break;
+      }
+    }
+
+    if (fallback) {
+      const sortedKey = word.split("").sort().join("");
+      if (!map.has(sortedKey)) map.set(sortedKey, []);
+      map.get(sortedKey).push(word);
+      continue; // next word
+    }
+
+    // build compact signature from counts (constant length 26)
+    const sig = count.join("#");
+    if (!map.has(sig)) map.set(sig, []);
+    map.get(sig).push(word);
+  }
+
+  return Array.from(map.values());
+}
+
+
+/* -----------------------------------------------------
+   ALL anagrams, grouped together
+------------------------------------------------------*/
+const sampleArr = ["cat", "dog", "tac", "god", "act"];
+
+/* =====================================================
+    allAnagrams – Brute Force (Recursive) – NOT EFFICIENT
+    Time: O(n * m * m!)    // m = word length (factorial explosion)
+    Space: O(K * m)        // K = unique permutations stored; recursion O(m)
+    Reason: generates every permutation for every word and dedups via a set.
+    Notes: extremely expensive for m > ~8. Good only for tiny inputs or demo.
+*/
+function allAnagrams(arr) {
+  const anagrams = {}; // set-like map to dedupe
+
   arr.forEach(function (str) {
-    var recurse = function (ana, str) {
-      if (str === "") anagrams[ana] = 1;
-      for (var i = 0; i < str.length; i++)
-        recurse(ana + str[i], str.slice(0, i) + str.slice(i + 1));
+    const recurse = function (built, remaining) {
+      if (remaining === "") {
+        anagrams[built] = 1; // record permutation
+        return;
+      }
+      // choose each char and recurse on the rest
+      for (let i = 0; i < remaining.length; i++) {
+        recurse(
+          built + remaining[i],                        // append chosen char
+          remaining.slice(0, i) + remaining.slice(i + 1) // remaining chars
+        );
+      }
     };
+
     recurse("", str);
   });
-  return Object.keys(anagrams);
-};
 
-console.log(allAnagrams(arr));
-//["cat", "cta", "act", "atc", "tca", "tac", "dog", "dgo", "odg", "ogd", "gdo", "god"]
+  return Object.keys(anagrams); // all unique permutations
+}
+
+/* =====================================================
+   allAnagramsBest — group then generate unique perms
+   Time:
+     - Grouping: O(n * m log m)   // sorting each word to form group key
+     - Perm generation: O(P * m)  // P = unique permutations per group (<= m!)
+   Space: O(P * m)                // store unique permutations for groups
+   Reason: group identical char-multisets once, generate unique perms with
+           duplicate-skip DFS (handles repeated characters).
+   Notes: much faster than brute force when many duplicate chars or repeated words.
+*/
+const allAnagramsBest = (arr) => {
+  const groups = new Map(); // sortedKey -> [words]
+  for (const word of arr) {
+    const key = [...word].sort().join(""); // O(m log m)
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(word);
+  }
+
+  // generate unique permutations for a char-array that may contain duplicates
+  const generateUnique = (chars) => {
+    chars.sort(); // group equal chars together
+    const used = new Array(chars.length).fill(false);
+    const buffer = new Array(chars.length);
+    const out = [];
+
+    const dfs = (depth) => {
+      if (depth === chars.length) {
+        out.push(buffer.join(""));
+        return;
+      }
+      for (let i = 0; i < chars.length; i++) {
+        if (used[i]) continue; // already placed this char in this branch
+        // skip duplicate choice when previous identical char was not used in this position
+        if (i > 0 && chars[i] === chars[i - 1] && !used[i - 1]) continue;
+
+        used[i] = true;
+        buffer[depth] = chars[i];
+        dfs(depth + 1);
+        used[i] = false;
+      }
+    };
+
+    dfs(0);
+    return out;
+  };
+
+  const result = [];
+  for (const [, words] of groups) {
+    const rep = words[0]; // one representative per group
+    result.push(...generateUnique([...rep]));
+  }
+  return result;
+};
 ```
 
 **[⬆ Back to Top](#table-of-contents)**
