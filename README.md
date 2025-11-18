@@ -419,21 +419,73 @@ const allAnagramsBest = (arr) => {
 5. ### Array Questions: Return 2 indices from an array, sum of their elements is= to given number?
 
 ```jsx harmony
-let A = [1, 4, 45, 6, 10, 8];
+let A = [1, 4, 11, 5, 45, 6, 10, 8, 8, 4, 4];
 let n = 16;
 printpairs(A, n);
+
+/* =====================================================================
+   printpairs — prints pairs that sum to target using HashSet
+   Logic:
+     • For each number, compute complement = sum - arr[i]
+     • If complement exists in Set → valid pair found
+     • Add current number to Set
+   Reason:
+     • HashSet lookup is O(1), so we find a pair in a single pass
+   Time Complexity:  O(n)     → one loop, Set ops are O(1)
+   Space Complexity: O(n)     → Set may store up to all array elements
+===================================================================== */
 function printpairs(arr, sum) {
-  let s = new Set();
+  let s = new Set();  // stores numbers seen so far
+
   for (let i = 0; i < arr.length; ++i) {
-    let temp = sum - arr[i];
+    let temp = sum - arr[i];  // complement needed for pair
+
     if (s.has(temp)) {
-      console.log(
-        "Pair with given sum " + sum + " is (" + arr[i] + ", " + temp + ")"
-      );
+      // found (arr[i], temp)
+      console.log("Pair:", arr[i], temp);
     }
-    s.add(arr[i]);
+
+    s.add(arr[i]); // mark current number as visited
   }
 }
+
+
+/* =====================================================================
+   findPairs — returns all UNIQUE pairs that sum to target
+   Logic:
+     • Same single-pass hash-based complement check
+     • Use canonical format (min,max) to avoid duplicate pairs like (8,8) repeated
+     • Store pairs in Set as strings → ensures uniqueness
+   Reason:
+     • Avoids repeated logging & returns proper array of pairs
+     • Canonical ordering ensures uniqueness even with duplicates in input
+   Time Complexity:  O(n)     → single pass with O(1) Set operations
+   Space Complexity: O(n)     → 'seen' + 'pairs' store unique items
+===================================================================== */
+function findPairs(arr, sum) {
+  const seen = new Set();   // numbers encountered so far
+  const pairs = new Set();  // unique pairs stored as "a,b"
+
+  for (const num of arr) {
+    const complement = sum - num;
+
+    // If complement seen → we have a valid pair
+    if (seen.has(complement)) {
+      // canonical order (a ≤ b) to avoid duplicates
+      const a = Math.min(num, complement);
+      const b = Math.max(num, complement);
+      pairs.add(`${a},${b}`);
+    }
+
+    seen.add(num); // mark current number as visited
+  }
+
+  // Convert "a,b" -> [a, b] arrays
+  return Array.from(pairs, str => str.split(',').map(Number));
+}
+
+console.log(findPairs(A, n));
+
 ```
 
 **[⬆ Back to Top](#table-of-contents)**
