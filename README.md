@@ -5,7 +5,7 @@
 |1 | [Array Questions: Unique elements](#array-questions-unique-elements) |
 |2 | [Array Questions: Nested array to single array](#array-questions-nested-array-to-single-array) |
 |3 | [Array Questions: Anagrams in a array of strings](#array-questions-anagrams-in-a-array-of-strings) |
-|4 | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#what-is-the-difference-between-element-and-component) |
+|4 | [Array Questions: Return 2 indices from an array, sum of their elements is= to given number?](#array-questions-sum-of-2-elements-in-array) |
 |5 | [Async Await Promise](#async-await-promise) |
 |6 | [Async defer](#async-defer) |
 |6 | [CSS](#css) |
@@ -416,7 +416,7 @@ const allAnagramsBest = (arr) => {
 
 **[⬆ Back to Top](#table-of-contents)**
 
-4. ### Array Questions: Return 2 indices from an array, sum of their elements is= to given number?
+4. ### Array Questions: Sum of 2 elements in array
 
 ```jsx harmony
 let A = [1, 4, 11, 5, 45, 6, 10, 8, 8, 4, 4];
